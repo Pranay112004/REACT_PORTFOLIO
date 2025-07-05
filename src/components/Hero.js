@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaChevronDown } from 'react-icons/fa';
-
+import Lightning from './Lightning';
+import './Lightning.css';
 const Hero = () => {
   const handleScroll = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ 
@@ -15,13 +16,6 @@ const Hero = () => {
         <div className="stars"></div>
         <div className="stars2"></div>
         <div className="stars3"></div>
-      </div>
-
-      {/* Floating geometric shapes */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full animate-float"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-green-500/10 rounded-full animate-float" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-40 left-20 w-12 h-12 bg-purple-500/10 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -78,11 +72,7 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
-              
-              {/* Floating elements around avatar */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full animate-bounce"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-pink-400 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
-              <div className="absolute top-1/2 -left-8 w-4 h-4 bg-purple-400 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+            
             </div>
           </div>
         </div>

@@ -116,21 +116,7 @@ const Footer = () => {
             <div className="flex items-center space-x-2 text-gray-400">
               <span>&copy; {currentYear} Pranay Meshram. All rights reserved.</span>
             </div>
-
-            {/* Made with Love */}
-            <div className="flex items-center space-x-2 text-gray-400">
-              <span>Made with</span>
-              <FaHeart className="text-red-500 animate-pulse" />
-              <span>using React & Tailwind CSS</span>
-            </div>
           </div>
-        </div>
-
-        {/* Additional Footer Note */}
-        <div className="mt-6 text-center">
-          <p className="text-gray-500 text-sm">
-            This portfolio is built with modern web technologies including React.js, Tailwind CSS, and love for clean code.
-          </p>
         </div>
       </div>
 
