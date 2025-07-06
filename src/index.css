@@ -81,3 +81,32 @@ body {
   background-size: cover;
   animation: float 4s ease-in-out infinite;
 }
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .stars {
+    box-shadow: 650px 300px #fff, 200px 600px #fff, 900px 200px #fff, 150px 450px #fff, 800px 500px #fff, 50px 350px #fff, 950px 100px #fff, 350px 750px #fff, 550px 150px #fff, 250px 400px #fff;
+  }
+  
+  .stars2 {
+    box-shadow: 450px 400px #fff, 300px 650px #fff, 700px 150px #fff, 550px 350px #fff, 850px 550px #fff, 100px 300px #fff, 750px 450px #fff, 400px 200px #fff;
+  }
+  
+  .stars3 {
+    box-shadow: 500px 450px #fff, 400px 300px #fff, 950px 250px #fff, 600px 500px #fff, 200px 550px #fff, 800px 100px #fff, 300px 700px #fff;
+  }
+}
+
+/* Ensure smooth scrolling on mobile */
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+}
+
+/* Fix viewport issues on mobile */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}

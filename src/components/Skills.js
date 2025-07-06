@@ -103,9 +103,10 @@ const Skills = () => {
       if (entry.isIntersecting) setIsVisible(true);
     }, { threshold: 0.3 }); // Trigger when 30% of the section is visible
 
-    if (skillsRef.current) observer.observe(skillsRef.current);
+    const currentRef = skillsRef.current;
+    if (currentRef) observer.observe(currentRef);
     return () => {
-      if (skillsRef.current) observer.unobserve(skillsRef.current);
+      if (currentRef) observer.unobserve(currentRef);
       document.head.removeChild(styleSheet); // Clean up injected style
     };
   }, []);
@@ -130,19 +131,19 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100" ref={skillsRef}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100" ref={skillsRef}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 relative inline-block animate-fade-in">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 relative inline-block animate-fade-in">
             My Skills
             <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full ${isVisible ? 'animate-expand-underline' : ''}`}></div>
           </h2>
-          <p className="text-xl text-gray-700 mt-6 animate-fade-in">Technologies I work with</p>
+          <p className="text-lg sm:text-xl text-gray-700 mt-6 animate-fade-in">Technologies I work with</p>
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
@@ -157,16 +158,16 @@ const Skills = () => {
                 `}
                 style={{ animationDelay: isVisible ? `${index * 0.1}s` : '0s' }}
               >
-                <div className="flex flex-col items-center text-center p-8">
+                <div className="flex flex-col items-center text-center p-4 sm:p-6 lg:p-8">
                   <div className={`
-                    p-4 rounded-full bg-gradient-to-br from-blue-100 to-green-100 mb-6
+                    p-3 sm:p-4 rounded-full bg-gradient-to-br from-blue-100 to-green-100 mb-4 sm:mb-6
                     transition-all duration-300 group-hover:scale-110 group-hover:from-blue-200 group-hover:to-green-200
                     animate-pulse-shadow-on-hover
                   `}>
-                    <Icon className={`text-6xl ${skill.color}`} />
+                    <Icon className={`text-4xl sm:text-5xl lg:text-6xl ${skill.color}`} />
                   </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-3">{skill.name}</h3>
-                  <p className="text-base text-gray-600 leading-relaxed">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">{skill.name}</h3>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                     {getSkillDescription(skill.name)}
                   </p>
                 </div>
@@ -176,16 +177,16 @@ const Skills = () => {
         </div>
 
         {/* Additional Info */}
-        <div className="mt-16 text-center">
+        <div className="mt-12 sm:mt-16 text-center">
           <div className={`
-            bg-blue-50 border border-blue-100 rounded-2xl p-10
+            bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8 lg:p-10
             shadow-xl animate-fade-in-up
             ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}
           `}
           style={{ animationDelay: isVisible ? `${skills.length * 0.1 + 0.2}s` : '0s' }} // Delay after skill cards
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Always Learning</h3>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Always Learning</h3>
+            <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto px-4 sm:px-0">
               Technology evolves rapidly, and I'm committed to staying current with the latest trends,
               frameworks, and best practices in web development. I believe in continuous learning and
               adapting to new challenges.

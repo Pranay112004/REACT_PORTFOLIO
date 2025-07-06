@@ -20,19 +20,19 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 relative inline-block">
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 relative inline-block">
             My Projects
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
           </h2>
-          <p className="text-xl text-gray-600 mt-6">Some of my recent work and I am working on it..</p>
+          <p className="text-lg sm:text-xl text-gray-600 mt-6">Some of my recent work and I am working on it..</p>
         </div>
 
         {/* Projects Grid */}
-        <div className="space-y-16">
+        <div className="space-y-12 sm:space-y-16">
           {projects.map((project, index) => (
             <div
               key={project.id}
@@ -41,7 +41,7 @@ const Projects = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Project Preview */}
-                <div className="relative h-64 lg:h-auto bg-gray-100 overflow-hidden group">
+                <div className="relative h-48 sm:h-64 lg:h-auto bg-gray-100 overflow-hidden group">
                   {/* Live Website Preview using iframe */}
                   <iframe
                     src={project.liveUrl}
@@ -60,31 +60,31 @@ const Projects = () => {
                       className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors duration-300"
                       title="View Live Site"
                     >
-                      <FaExternalLinkAlt size={24} />
+                      <FaExternalLinkAlt size={20} className="sm:text-2xl" />
                     </a>
                   </div>
                 </div>
 
                 {/* Project Info */}
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {project.title}
                   </h3>
                   
-                  <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                  <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-6">
                     {project.description}
                   </p>
 
                   {/* Technologies */}
-                  <div className="mb-8">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">
+                  <div className="mb-6 sm:mb-8">
+                    <h4 className="text-xs sm:text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">
                       Technologies Used
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="px-3 py-1 bg-gradient-to-r from-blue-500 to-green-500 text-white text-sm font-medium rounded-full"
+                          className="px-2 sm:px-3 py-1 bg-gradient-to-r from-blue-500 to-green-500 text-white text-xs sm:text-sm font-medium rounded-full"
                         >
                           {tech}
                         </span>
@@ -93,14 +93,14 @@ const Projects = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex justify-center sm:justify-start">
+                  <div className="flex justify-center lg:justify-start">
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105"
+                      className="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
                     >
-                      <FaExternalLinkAlt className="mr-2" />
+                      <FaExternalLinkAlt className="mr-2 text-sm" />
                       View Live Site
                     </a>
                   </div>
@@ -111,15 +111,15 @@ const Projects = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-16 text-center animate-fade-in">
-          <div className="bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-8 text-white">
-            <h3 className="text-3xl font-bold mb-4">Interested in Working Together?</h3>
-            <p className="text-xl mb-6 opacity-90">
+        <div className="mt-12 sm:mt-16 text-center animate-fade-in">
+          <div className="bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-6 sm:p-8 text-white">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4">Interested in Working Together?</h3>
+            <p className="text-lg sm:text-xl mb-6 opacity-90 px-4 sm:px-0">
               I'm always open to discussing new opportunities and exciting projects.
             </p>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105 text-sm sm:text-base"
             >
               Let's Talk
             </button>
