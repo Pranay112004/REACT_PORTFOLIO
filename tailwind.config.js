@@ -52,6 +52,7 @@ module.exports = {
         'pulse-slow': 'pulse 3s infinite',
         'float': 'float 4s ease-in-out infinite',
         'shine': 'shine 4s linear infinite',
+        'ping-ring': 'pingRing 2.5s cubic-bezier(0, 0, 0.2, 1) infinite',
       },
       keyframes: {
         fadeIn: {
@@ -74,7 +75,24 @@ module.exports = {
           '0%': { backgroundPosition: '0% center' },
           '100%': { backgroundPosition: '300% center' },
         },
+        pingRing: {
+          '0%': { transform: 'scale(1)', opacity: '0.7' },
+          '50%': { transform: 'scale(1.5)', opacity: '0.4' },
+          '100%': { transform: 'scale(2)', opacity: '0' },
+        },
       },
+      extend: {
+  animation: {
+    'float-slow': 'floatSlow 6s ease-in-out infinite',
+  },
+  keyframes: {
+    floatSlow: {
+      '0%, 100%': { transform: 'translateY(0)' },
+      '50%': { transform: 'translateY(-8px)' },
+    },
+  },
+}
+
     },
   },
   plugins: [],

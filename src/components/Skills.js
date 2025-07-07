@@ -110,24 +110,24 @@ const Skills = () => {
       document.head.removeChild(styleSheet); // Clean up injected style
     };
   }, []);
-
+  
   const getSkillDescription = (skillName) => {
     const descriptions = {
-      'HTML5': 'Semantic markup and modern web standards',
-      'CSS3': 'Advanced styling, animations, and responsive design',
-      'JavaScript': 'Modern ES6+ features and asynchronous programming',
-      'React': 'Component-based UI development and state management',
-      'Node.js': 'Server-side JavaScript and API development',
-      'Python': 'Backend development and automation scripts',
-      'MongoDB': 'NoSQL database design and operations',
-      'MySQL': 'Relational database management and optimization',
-      'Express.js': 'Web framework for Node.js applications',
-      'Next.js': 'React framework for production applications',
-      'Java': 'Object-oriented programming and enterprise applications',
-      'GitHub': 'Version control, collaboration, and code hosting', // Description for GitHub
-      'Tailwind CSS': 'Utility-first CSS framework for rapid UI development' // Description for Tailwind CSS
+      'HTML5': '',
+      'CSS3': '',
+      'JavaScript': '',
+      'React': '',
+      'Node.js': '',
+      'Python': '',
+      'MongoDB': '',
+      'MySQL': '',
+      'Express.js': '',
+      'Next.js': '',
+      'Java': '',
+      'GitHub': '', // Description for GitHub
+      'Tailwind CSS':'' // Description for Tailwind CSS
     };
-    return descriptions[skillName] || 'Professional experience and expertise';
+    return descriptions[skillName] || '';
   };
 
   return (
@@ -174,24 +174,6 @@ const Skills = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-12 sm:mt-16 text-center">
-          <div className={`
-            bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8 lg:p-10
-            shadow-xl animate-fade-in-up
-            ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}
-          `}
-          style={{ animationDelay: isVisible ? `${skills.length * 0.1 + 0.2}s` : '0s' }} // Delay after skill cards
-          >
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Always Learning</h3>
-            <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto px-4 sm:px-0">
-              Technology evolves rapidly, and I'm committed to staying current with the latest trends,
-              frameworks, and best practices in web development. I believe in continuous learning and
-              adapting to new challenges.
-            </p>
-          </div>
         </div>
       </div>
     </section>
