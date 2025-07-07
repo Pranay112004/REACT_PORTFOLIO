@@ -143,7 +143,7 @@ const Skills = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
@@ -158,16 +158,16 @@ const Skills = () => {
                 `}
                 style={{ animationDelay: isVisible ? `${index * 0.1}s` : '0s' }}
               >
-                <div className="flex flex-col items-center text-center p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col items-center text-center p-3 xs:p-4 sm:p-6 lg:p-8">
                   <div className={`
-                    p-3 sm:p-4 rounded-full bg-gradient-to-br from-blue-100 to-green-100 mb-4 sm:mb-6
+                    p-2 xs:p-3 sm:p-4 rounded-full bg-gradient-to-br from-blue-100 to-green-100 mb-3 xs:mb-4 sm:mb-6
                     transition-all duration-300 group-hover:scale-110 group-hover:from-blue-200 group-hover:to-green-200
                     animate-pulse-shadow-on-hover
                   `}>
-                    <Icon className={`text-4xl sm:text-5xl lg:text-6xl ${skill.color}`} />
+                    <Icon className={`text-3xl xs:text-4xl sm:text-5xl lg:text-6xl ${skill.color}`} />
                   </div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">{skill.name}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-1 xs:mb-2 sm:mb-3">{skill.name}</h3>
+                  <p className="text-xs xs:text-sm sm:text-base text-gray-600 leading-relaxed">
                     {getSkillDescription(skill.name)}
                   </p>
                 </div>

@@ -6,8 +6,14 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'xs': '480px',
-        '3xl': '1600px',
+        'xs': '375px',    // Small phones
+        'sm': '640px',    // Large phones
+        'md': '768px',    // Tablets
+        'lg': '1024px',   // Small laptops
+        'xl': '1280px',   // Large laptops
+        '2xl': '1536px',  // Desktops
+        '3xl': '1600px',  // Large desktops
+        '4xl': '1920px',  // Extra large screens
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],

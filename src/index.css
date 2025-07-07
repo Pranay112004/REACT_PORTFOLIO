@@ -110,3 +110,94 @@ body {
     min-height: -webkit-fill-available;
   }
 }
+
+/* Enhanced responsive utilities */
+@media (max-width: 374px) {
+  /* Extra small phones */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .text-responsive-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 639px) {
+  /* Small phones */
+  .text-responsive-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  /* Large phones / Small tablets */
+  .text-responsive-md {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablets */
+  .grid-responsive-tablet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* Small laptops */
+  .grid-responsive-laptop {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1920px) {
+  /* 4K and ultra-wide screens */
+  .container {
+    max-width: 1600px;
+  }
+  
+  .text-responsive-4k {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+/* Prevent horizontal scroll on all devices */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Enhanced touch targets for mobile */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve tap targets */
+  .nav-link, .btn {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

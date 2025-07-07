@@ -119,7 +119,7 @@ const Contact = () => {
 
           {/* Contact Form - Adjusted input styles and text colors */}
           <div className="animate-slide-in-right">
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-xl shadow-lg">
+            <form onSubmit={handleSubmit} className="space-y-3 xs:space-y-4 sm:space-y-6 p-4 xs:p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-xl shadow-lg">
               <div>
                 <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">
                   Your Name
@@ -132,7 +132,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   // Adjusted input background, border, and text colors
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 text-gray-900 placeholder-gray-500 text-sm sm:text-base"
+                  className="w-full px-2 xs:px-3 sm:px-4 py-2 xs:py-2.5 sm:py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 text-gray-900 placeholder-gray-500 text-xs xs:text-sm sm:text-base"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -149,7 +149,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   // Adjusted input background, border, and text colors
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 text-gray-900 placeholder-gray-500 text-sm sm:text-base"
+                  className="w-full px-2 xs:px-3 sm:px-4 py-2 xs:py-2.5 sm:py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 text-gray-900 placeholder-gray-500 text-xs xs:text-sm sm:text-base"
                   placeholder="Enter your email address"
                 />
               </div>
@@ -164,16 +164,16 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
+                  rows={4}
                   // Adjusted textarea background, border, and text colors
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 resize-vertical text-gray-900 placeholder-gray-500 text-sm sm:text-base"
+                  className="w-full px-2 xs:px-3 sm:px-4 py-2 xs:py-2.5 sm:py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-300 resize-vertical text-gray-900 placeholder-gray-500 text-xs xs:text-sm sm:text-base"
                   placeholder="Tell me about your project or just say hello!"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-200 text-sm sm:text-base"
+                className="w-full flex items-center justify-center px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-200 text-xs xs:text-sm sm:text-base"
               >
                 <FaPaperPlane className="mr-2 text-sm" />
                 Send Message

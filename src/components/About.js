@@ -45,9 +45,9 @@ const About = () => {
             </div>
           </div>
 
-          <div className="flex justify-center order-1 lg:order-2 mb-6 lg:mb-0">
+          <div className="flex justify-center order-1 lg:order-2 mb-4 xs:mb-6 lg:mb-0">
             <div className="relative">
-              <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full bg-gradient-to-br from-blue-500 to-green-500 p-1">
+              <div className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-64 lg:h-64 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80 rounded-full bg-gradient-to-br from-blue-500 to-green-500 p-1">
                 <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/IMG_3301.jpg" 

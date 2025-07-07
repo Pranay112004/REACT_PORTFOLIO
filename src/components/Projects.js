@@ -41,7 +41,7 @@ const Projects = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Project Preview */}
-                <div className="relative h-48 sm:h-64 lg:h-auto bg-gray-100 overflow-hidden group">
+                <div className="relative h-40 xs:h-48 sm:h-64 md:h-72 lg:h-auto bg-gray-100 overflow-hidden group">
                   {/* Live Website Preview using iframe */}
                   <iframe
                     src={project.liveUrl}
@@ -66,12 +66,12 @@ const Projects = () => {
                 </div>
 
                 {/* Project Info */}
-                <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                <div className="p-4 xs:p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
+                  <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 xs:mb-4">
                     {project.title}
                   </h3>
                   
-                  <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-6">
+                  <p className="text-gray-700 text-sm xs:text-base sm:text-lg leading-relaxed mb-4 xs:mb-6">
                     {project.description}
                   </p>
 
