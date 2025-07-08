@@ -1,32 +1,32 @@
-import React from 'react';
-import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from 'react-icons/fa';
+import React from "react";
+import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   const socialLinks = [
     {
-      name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/pranay-suresh-meshram-698a6334a',
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/pranay-suresh-meshram-698a6334a",
       icon: FaLinkedin,
-      color: 'hover:text-blue-600'
+      color: "hover:text-blue-600",
     },
     {
-      name: 'GitHub',
-      url: 'https://github.com/Pranay112004',
+      name: "GitHub",
+      url: "https://github.com/Pranay112004",
       icon: FaGithub,
-      color: 'hover:text-gray-900'
+      color: "hover:text-gray-900",
     },
     {
-      name: 'Twitter',
-      url: '#',
+      name: "Twitter",
+      url: "#",
       icon: FaTwitter,
-      color: 'hover:text-blue-400'
+      color: "hover:text-blue-400",
     },
     {
-      name: 'Instagram',
-      url: 'https://www.instagram.com/_pranay_meshram_11',
+      name: "Instagram",
+      url: "https://www.instagram.com/_pranay_meshram_11",
       icon: FaInstagram,
-      color: 'hover:text-pink-600'
-    }
+      color: "hover:text-pink-600",
+    },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -40,8 +40,9 @@ const Footer = () => {
           <div className="space-y-3 sm:space-y-4 text-center sm:text-left">
             <h3 className="text-xl sm:text-2xl font-bold">Pranay Meshram</h3>
             <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-              Full Stack Developer passionate about creating innovative web solutions 
-              that make a difference. Always learning, always building.
+              Full Stack Developer passionate about creating innovative web
+              solutions that make a difference. Always learning, always
+              building.
             </p>
             <div className="flex space-x-3 sm:space-x-4 justify-center sm:justify-start">
               {socialLinks.map((social, index) => {
@@ -55,7 +56,10 @@ const Footer = () => {
                     className={`w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 ${social.color} hover:bg-gray-700`}
                     aria-label={social.name}
                   >
-                    <IconComponent size={16} className="sm:w-[18px] sm:h-[18px]" />
+                    <IconComponent
+                      size={16}
+                      className="sm:w-[18px] sm:h-[18px]"
+                    />
                   </a>
                 );
               })}
@@ -66,16 +70,22 @@ const Footer = () => {
           <div className="space-y-3 sm:space-y-4 text-center sm:text-left">
             <h4 className="text-base sm:text-lg font-semibold">Quick Links</h4>
             <ul className="space-y-1 sm:space-y-2">
-              {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item, index) => (
-                <li key={index}>
-                  <button
-                    onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    {item}
-                  </button>
-                </li>
-              ))}
+              {["Home", "About", "Skills", "Projects", "Contact"].map(
+                (item, index) => (
+                  <li key={index}>
+                    <button
+                      onClick={() =>
+                        document
+                          .getElementById(item.toLowerCase())
+                          ?.scrollIntoView({ behavior: "smooth" })
+                      }
+                      className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors duration-300"
+                    >
+                      {item}
+                    </button>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
@@ -85,7 +95,7 @@ const Footer = () => {
             <div className="space-y-2 sm:space-y-3 text-gray-400">
               <div>
                 <p className="text-sm sm:text-base font-medium">Email</p>
-                <a 
+                <a
                   href="mailto:pranaym820@gmail.com"
                   className="text-xs sm:text-sm hover:text-white transition-colors duration-300 break-all"
                 >
@@ -94,7 +104,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="text-sm sm:text-base font-medium">Phone</p>
-                <a 
+                <a
                   href="tel:+919503474561"
                   className="text-xs sm:text-sm hover:text-white transition-colors duration-300"
                 >
@@ -114,7 +124,9 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0">
             {/* Copyright */}
             <div className="flex items-center space-x-2 text-gray-400 text-center">
-              <span className="text-xs sm:text-sm">&copy; {currentYear} Pranay Meshram. All rights reserved.</span>
+              <span className="text-xs sm:text-sm">
+                &copy; {currentYear} Pranay Meshram. All rights reserved.
+              </span>
             </div>
           </div>
         </div>

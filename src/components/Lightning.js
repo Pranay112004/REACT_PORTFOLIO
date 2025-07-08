@@ -115,10 +115,7 @@ const Lightning = ({
       }
     `;
 
-    const compileShader = (
-      source,
-      type
-    ) => {
+    const compileShader = (source, type) => {
       const shader = gl.createShader(type);
       if (!shader) return null;
       gl.shaderSource(shader, source);

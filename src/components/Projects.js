@@ -1,26 +1,31 @@
-import React from 'react';
-import { FaExternalLinkAlt } from 'react-icons/fa';
+import React from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'VJTI SHOP Website',
-      description: 'A full-stack e-commerce platform with HTML, CSS, JS, and Python. VJTI Shop is a web-based e-commerce platform designed to serve the students of Veermata Jijabai Technological Institute (VJTI). The platform allows users to browse and purchase Notes, Books, lost items, and can sell college related items.',
-      technologies: ['HTML', 'CSS', 'Python', 'JavaScript'],
-      liveUrl: 'https://vjti-web.onrender.com'
+      title: "VJTI SHOP Website",
+      description:
+        "A full-stack e-commerce platform with HTML, CSS, JS, and Python. VJTI Shop is a web-based e-commerce platform designed to serve the students of Veermata Jijabai Technological Institute (VJTI). The platform allows users to browse and purchase Notes, Books, lost items, and can sell college related items.",
+      technologies: ["HTML", "CSS", "Python", "JavaScript"],
+      liveUrl: "https://vjti-web.onrender.com",
     },
     {
       id: 2,
-      title: 'Railway Customer Support Chatbot',
-      description: 'The Railway Chatbot is an AI-powered conversational interface designed to assist users with common railway-related queries. It provides quick, real-time answers about train schedules, ticket booking procedures, platform information, train running status, and other frequently asked questions. Built using React.js for the frontend and powered by a structured dataset (CSV).',
-      technologies: ['React', 'CSS', 'Python', 'AI/ML'],
-      liveUrl: 'https://new-railway-customersupport.vercel.app'
-    }
+      title: "Railway Customer Support Chatbot",
+      description:
+        "The Railway Chatbot is an AI-powered conversational interface designed to assist users with common railway-related queries. It provides quick, real-time answers about train schedules, ticket booking procedures, platform information, train running status, and other frequently asked questions. Built using React.js for the frontend and powered by a structured dataset (CSV).",
+      technologies: ["React", "CSS", "Python", "AI/ML"],
+      liveUrl: "https://new-railway-customersupport.vercel.app",
+    },
   ];
 
   return (
-    <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section
+      id="projects"
+      className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 animate-fade-in">
@@ -28,7 +33,9 @@ const Projects = () => {
             My Projects
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 mt-6">Some of my recent work and I am working on it..</p>
+          <p className="text-lg sm:text-xl text-gray-600 mt-6">
+            Some of my recent work and I am working on it..
+          </p>
         </div>
 
         {/* Projects Grid */}
@@ -50,7 +57,7 @@ const Projects = () => {
                     loading="lazy"
                     sandbox="allow-scripts allow-same-origin"
                   />
-                  
+
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/80 to-green-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <a
@@ -70,7 +77,7 @@ const Projects = () => {
                   <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 xs:mb-4">
                     {project.title}
                   </h3>
-                  
+
                   <p className="text-gray-700 text-sm xs:text-base sm:text-lg leading-relaxed mb-4 xs:mb-6">
                     {project.description}
                   </p>
@@ -113,12 +120,19 @@ const Projects = () => {
         {/* Call to Action */}
         <div className="mt-12 sm:mt-16 text-center animate-fade-in">
           <div className="bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-6 sm:p-8 text-white">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4">Interested in Working Together?</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+              Interested in Working Together?
+            </h3>
             <p className="text-lg sm:text-xl mb-6 opacity-90 px-4 sm:px-0">
-              I'm always open to discussing new opportunities and exciting projects.
+              I'm always open to discussing new opportunities and exciting
+              projects.
             </p>
             <button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105 text-sm sm:text-base"
             >
               Let's Talk

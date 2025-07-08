@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import React, { useState } from "react";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaPaperPlane,
+} from "react-icons/fa";
 // import Lightning from './Lightning'; // Removed Lightning import
 // import './Lightning.css'; // Removed Lightning CSS import
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -21,40 +26,43 @@ const Contact = () => {
     e.preventDefault();
     // Here you would typically send the form data to your backend
     // Replaced alert with a console log for better user experience in a web app
-    console.log('Form data submitted:', formData);
+    console.log("Form data submitted:", formData);
     // In a real application, you might show a success message in a modal or toast
-    alert('Thank you for your message! I\'ll get back to you soon.'); // Keeping alert as per previous code, but typically would use a custom modal.
+    alert("Thank you for your message! I'll get back to you soon."); // Keeping alert as per previous code, but typically would use a custom modal.
     setFormData({
-      name: '',
-      email: '',
-      message: ''
+      name: "",
+      email: "",
+      message: "",
     });
   };
 
   const contactInfo = [
     {
       icon: FaEnvelope,
-      title: 'Email',
-      value: 'pranaym820@gmail.com',
-      link: 'mailto:pranaym820@gmail.com'
+      title: "Email",
+      value: "pranaym820@gmail.com",
+      link: "mailto:pranaym820@gmail.com",
     },
     {
       icon: FaPhone,
-      title: 'Phone',
-      value: '+91 9503474561',
-      link: 'tel:+919503474561'
+      title: "Phone",
+      value: "+91 9503474561",
+      link: "tel:+919503474561",
     },
     {
       icon: FaMapMarkerAlt,
-      title: 'Location',
-      value: 'Mumbai, Maharashtra',
-      link: '#'
-    }
+      title: "Location",
+      value: "Mumbai, Maharashtra",
+      link: "#",
+    },
   ];
 
   return (
     // Changed background to white and added relative positioning for Lightning
-    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden"
+    >
       {/* Container for Lightning components, positioned absolutely and behind content */}
       {/* Removed Lightning components */}
       {/* <div className="absolute inset-0 z-0">
@@ -70,17 +78,22 @@ const Contact = () => {
             Get In Touch
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-700 mt-6">Let's work together</p>
+          <p className="text-lg sm:text-xl text-gray-700 mt-6">
+            Let's work together
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Information - Adjusted text colors */}
           <div className="animate-slide-in-left">
             <div className="mb-6 sm:mb-8">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Let's Connect</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+                Let's Connect
+              </h3>
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed px-2 sm:px-0">
-                I'm always interested in hearing about new opportunities and exciting projects.
-                Whether you have a question or just want to say hi, feel free to reach out!
+                I'm always interested in hearing about new opportunities and
+                exciting projects. Whether you have a question or just want to
+                say hi, feel free to reach out!
               </p>
             </div>
 
@@ -99,8 +112,10 @@ const Contact = () => {
                       </div>
                     </div>
                     <div className="ml-3 sm:ml-4">
-                      <h4 className="text-base sm:text-lg font-semibold text-gray-900">{item.title}</h4>
-                      {item.link !== '#' ? (
+                      <h4 className="text-base sm:text-lg font-semibold text-gray-900">
+                        {item.title}
+                      </h4>
+                      {item.link !== "#" ? (
                         <a
                           href={item.link}
                           className="text-sm sm:text-base text-gray-700 hover:text-blue-500 transition-colors duration-300"
@@ -108,7 +123,9 @@ const Contact = () => {
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-sm sm:text-base text-gray-700">{item.value}</p>
+                        <p className="text-sm sm:text-base text-gray-700">
+                          {item.value}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -119,9 +136,15 @@ const Contact = () => {
 
           {/* Contact Form - Adjusted input styles and text colors */}
           <div className="animate-slide-in-right">
-            <form onSubmit={handleSubmit} className="space-y-3 xs:space-y-4 sm:space-y-6 p-4 xs:p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-xl shadow-lg">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-3 xs:space-y-4 sm:space-y-6 p-4 xs:p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-xl shadow-lg"
+            >
               <div>
-                <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-xs sm:text-sm font-semibold text-gray-900 mb-2"
+                >
                   Your Name
                 </label>
                 <input
@@ -138,7 +161,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-xs sm:text-sm font-semibold text-gray-900 mb-2"
+                >
                   Your Email
                 </label>
                 <input
@@ -155,7 +181,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-xs sm:text-sm font-semibold text-gray-900 mb-2"
+                >
                   Your Message
                 </label>
                 <textarea
@@ -185,9 +214,12 @@ const Contact = () => {
         {/* Call to Action - Adjusted background and text colors */}
         <div className="mt-12 sm:mt-16 text-center animate-fade-in">
           <div className="bg-gray-100 rounded-2xl p-6 sm:p-8 text-gray-900 shadow-xl">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4">Ready to Start a Project?</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+              Ready to Start a Project?
+            </h3>
             <p className="text-lg sm:text-xl mb-6 opacity-90 px-4 sm:px-0">
-              Let's discuss how we can bring your ideas to life with modern web technologies.
+              Let's discuss how we can bring your ideas to life with modern web
+              technologies.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a

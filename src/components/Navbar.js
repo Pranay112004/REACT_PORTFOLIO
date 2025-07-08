@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,8 +10,8 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () => {
@@ -20,23 +20,25 @@ const Navbar = () => {
 
   const handleNavClick = (sectionId) => {
     setIsMenuOpen(false);
-    document.getElementById(sectionId)?.scrollIntoView({ 
-      behavior: 'smooth' 
+    document.getElementById(sectionId)?.scrollIntoView({
+      behavior: "smooth",
     });
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-gray-900/95 backdrop-blur-md shadow-lg' 
-        : 'bg-gray-900/90 backdrop-blur-sm'
-    }`}>
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-gray-900/95 backdrop-blur-md shadow-lg"
+          : "bg-gray-900/90 backdrop-blur-sm"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
             <button
-              onClick={() => handleNavClick('home')}
+              onClick={() => handleNavClick("home")}
               className="text-2xl font-bold text-white hover:text-blue-400 transition-colors duration-300"
             >
               Portfolio
@@ -45,7 +47,7 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
-            {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
+            {["home", "about", "skills", "projects", "contact"].map((item) => (
               <button
                 key={item}
                 onClick={() => handleNavClick(item)}
@@ -69,11 +71,13 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
+        <div
+          className={`md:hidden transition-all duration-300 overflow-hidden ${
+            isMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
           <div className="py-4 space-y-4">
-            {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
+            {["home", "about", "skills", "projects", "contact"].map((item) => (
               <button
                 key={item}
                 onClick={() => handleNavClick(item)}

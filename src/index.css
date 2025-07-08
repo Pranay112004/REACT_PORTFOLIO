@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,9 +9,9 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -28,8 +28,12 @@ body {
 }
 
 @keyframes shine {
-  0% { background-position: 0% center; }
-  100% { background-position: 300% center; }
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 300% center;
+  }
 }
 
 .skill-progress {
@@ -42,7 +46,9 @@ body {
   width: 4px;
   height: 3px;
   background: transparent;
-  box-shadow: 1300px 600px #fff, 400px 1200px #fff, 1800px 400px #fff, 300px 900px #fff, 1600px 1000px #fff, 100px 700px #fff, 1900px 200px #fff, 700px 1500px #fff, 1100px 300px #fff, 500px 800px #fff;
+  box-shadow: 1300px 600px #fff, 400px 1200px #fff, 1800px 400px #fff,
+    300px 900px #fff, 1600px 1000px #fff, 100px 700px #fff, 1900px 200px #fff,
+    700px 1500px #fff, 1100px 300px #fff, 500px 800px #fff;
   animation: animStar 3s linear infinite;
 }
 
@@ -51,7 +57,9 @@ body {
   width: 3px;
   height: 3px;
   background: transparent;
-  box-shadow: 900px 800px #fff, 600px 1300px #fff, 1400px 300px #fff, 1100px 700px #fff, 1700px 1100px #fff, 200px 600px #fff, 1500px 900px #fff, 800px 400px #fff;
+  box-shadow: 900px 800px #fff, 600px 1300px #fff, 1400px 300px #fff,
+    1100px 700px #fff, 1700px 1100px #fff, 200px 600px #fff, 1500px 900px #fff,
+    800px 400px #fff;
   animation: animStar 5s linear infinite;
 }
 
@@ -60,18 +68,23 @@ body {
   width: 3px;
   height: 3px;
   background: transparent;
-  box-shadow: 1000px 900px #fff, 800px 600px #fff, 1900px 500px #fff, 1200px 1000px #fff, 400px 1100px #fff, 1600px 200px #fff, 600px 1400px #fff;
+  box-shadow: 1000px 900px #fff, 800px 600px #fff, 1900px 500px #fff,
+    1200px 1000px #fff, 400px 1100px #fff, 1600px 200px #fff, 600px 1400px #fff;
   animation: animStar 7s linear infinite;
 }
 
 @keyframes animStar {
-  from { transform: translateY(100px); }
-  to { transform: translateY(-4000px); }
+  from {
+    transform: translateY(100px);
+  }
+  to {
+    transform: translateY(-4000px);
+  }
 }
 
 /* Floating geometric pattern overlay */
 .hero-pattern::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -85,15 +98,20 @@ body {
 /* Responsive utilities */
 @media (max-width: 640px) {
   .stars {
-    box-shadow: 650px 300px #fff, 200px 600px #fff, 900px 200px #fff, 150px 450px #fff, 800px 500px #fff, 50px 350px #fff, 950px 100px #fff, 350px 750px #fff, 550px 150px #fff, 250px 400px #fff;
+    box-shadow: 650px 300px #fff, 200px 600px #fff, 900px 200px #fff,
+      150px 450px #fff, 800px 500px #fff, 50px 350px #fff, 950px 100px #fff,
+      350px 750px #fff, 550px 150px #fff, 250px 400px #fff;
   }
-  
+
   .stars2 {
-    box-shadow: 450px 400px #fff, 300px 650px #fff, 700px 150px #fff, 550px 350px #fff, 850px 550px #fff, 100px 300px #fff, 750px 450px #fff, 400px 200px #fff;
+    box-shadow: 450px 400px #fff, 300px 650px #fff, 700px 150px #fff,
+      550px 350px #fff, 850px 550px #fff, 100px 300px #fff, 750px 450px #fff,
+      400px 200px #fff;
   }
-  
+
   .stars3 {
-    box-shadow: 500px 450px #fff, 400px 300px #fff, 950px 250px #fff, 600px 500px #fff, 200px 550px #fff, 800px 100px #fff, 300px 700px #fff;
+    box-shadow: 500px 450px #fff, 400px 300px #fff, 950px 250px #fff,
+      600px 500px #fff, 200px 550px #fff, 800px 100px #fff, 300px 700px #fff;
   }
 }
 
@@ -118,7 +136,7 @@ body {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
-  
+
   .text-responsive-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -160,7 +178,7 @@ body {
   .container {
     max-width: 1600px;
   }
-  
+
   .text-responsive-4k {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -172,20 +190,23 @@ body {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
 }
 
 /* Enhanced touch targets for mobile */
 @media (max-width: 768px) {
-  button, a {
+  button,
+  a {
     min-height: 44px;
     min-width: 44px;
   }
-  
+
   /* Improve tap targets */
-  .nav-link, .btn {
+  .nav-link,
+  .btn {
     padding: 0.75rem 1rem;
   }
 }
@@ -195,7 +216,7 @@ html, body {
   .no-print {
     display: none !important;
   }
-  
+
   body {
     background: white !important;
     color: black !important;

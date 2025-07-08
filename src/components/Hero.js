@@ -1,9 +1,9 @@
-import React from 'react';
-import { FaChevronDown } from 'react-icons/fa';
+import React from "react";
+import { FaChevronDown } from "react-icons/fa";
 
 const Hero = () => {
   const handleScroll = (sectionId) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -26,7 +26,10 @@ const Hero = () => {
           {/* Left Content */}
           <div className="text-center lg:text-left animate-slide-in-left order-2 lg:order-1 px-2 sm:px-0">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-4">
-              Hi, I'm <span className="gradient-text font-extrabold">Pranay Meshram</span>
+              Hi, I'm{" "}
+              <span className="gradient-text font-extrabold">
+                Pranay Meshram
+              </span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-gray-200 font-medium mb-3">
@@ -34,19 +37,20 @@ const Hero = () => {
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-xl mx-auto lg:mx-0 mb-6">
-              I develop full-stack web solutions that are fast, responsive, and designed with the user in mind.
+              I develop full-stack web solutions that are fast, responsive, and
+              designed with the user in mind.
             </p>
 
             <div className="flex flex-col xs:flex-row gap-3 justify-center lg:justify-start">
               <button
-                onClick={() => handleScroll('projects')}
+                onClick={() => handleScroll("projects")}
                 className="px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-full hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
               >
                 View My Work
               </button>
 
               <button
-                onClick={() => handleScroll('contact')}
+                onClick={() => handleScroll("contact")}
                 className="px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
               >
                 Get In Touch
@@ -67,26 +71,25 @@ const Hero = () => {
 
               {/* Avatar Image */}
               {/* Avatar Image */}
-<div className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-green-400 p-1 relative z-10">
-  <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden animate-float-slow">
-    <img
-      src="/images/PM.jpg"
-      alt="Pranay Meshram"
-      className="w-full h-full object-cover rounded-full"
-      onError={(e) => {
-        e.target.style.display = 'none';
-        e.target.nextSibling.style.display = 'flex';
-      }}
-    />
-    <div
-      className="w-full h-full bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-white text-4xl font-bold"
-      style={{ display: 'none' }}
-    >
-      PM
-    </div>
-  </div>
-</div>
-
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-green-400 p-1 relative z-10">
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden animate-float-slow">
+                  <img
+                    src="/images/PM.jpg"
+                    alt="Pranay Meshram"
+                    className="w-full h-full object-cover rounded-full"
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                      e.target.nextSibling.style.display = "flex";
+                    }}
+                  />
+                  <div
+                    className="w-full h-full bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-white text-4xl font-bold"
+                    style={{ display: "none" }}
+                  >
+                    PM
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -95,7 +98,7 @@ const Hero = () => {
       {/* Scroll indicator */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce-slow z-10">
         <button
-          onClick={() => handleScroll('about')}
+          onClick={() => handleScroll("about")}
           className="text-white hover:text-blue-400 transition-colors duration-300"
         >
           <FaChevronDown size={24} />
