@@ -65,6 +65,14 @@ const Projects = () => {
     },
     {
       id: 4,
+      title: "Rock-Paper-Scissors Game",
+      description:
+        " A simple rock-paper-scissors game built using React.js and CSS. Users can play against the computer or against each other. The game keeps track of the score and displays the winner",
+      technologies: ["React", "CSS", "JavaScript"],
+      liveUrl: "https://rps-gamee-zeta.vercel.app",
+    },
+    {
+      id: 5,
       title: "Railway Customer Support Chatbot",
       description:
         "The Railway Chatbot is an AI-powered conversational interface designed to assist users with common railway-related queries. It provides quick, real-time answers about train schedules, ticket booking procedures, platform information, train running status, and other frequently asked questions. Built using React.js for the frontend and powered by a structured dataset (CSV).",
