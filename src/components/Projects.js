@@ -71,14 +71,6 @@ const Projects = () => {
       technologies: ["React", "CSS", "JavaScript"],
       liveUrl: "https://rps-gamee-zeta.vercel.app",
     },
-    {
-      id: 5,
-      title: "Railway Customer Support Chatbot",
-      description:
-        "The Railway Chatbot is an AI-powered conversational interface designed to assist users with common railway-related queries. It provides quick, real-time answers about train schedules, ticket booking procedures, platform information, train running status, and other frequently asked questions. Built using React.js for the frontend and powered by a structured dataset (CSV).",
-      technologies: ["React", "CSS", "Python", "AI/ML"],
-      liveUrl: "https://new-railway-customersupport.vercel.app",
-    },
   ];
 
   useEffect(() => {
