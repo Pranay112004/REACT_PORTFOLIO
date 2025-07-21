@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen relative overflow-hidden bg-gradient-to-br from-green-900 via-teal-800 to-blue-900 flex items-center px-4 xs:px-6"
+      className="min-h-screen relative overflow-hidden bg-custom-hero flex items-center px-4 xs:px-6"
     >
       {/* Radial glow background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-600 via-transparent to-transparent opacity-10 pointer-events-none z-0"></div>
@@ -44,7 +44,7 @@ const Hero = () => {
             <div className="flex flex-col xs:flex-row gap-3 justify-center lg:justify-start">
               <button
                 onClick={() => handleScroll("projects")}
-                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-full hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+                className="px-6 py-3 bg-gradient-to-r from-[#1f4037] to-[#79dbad] text-white font-semibold rounded-full hover:from-[#162c26] hover:to-[#5db79e] transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
               >
                 View My Work
               </button>

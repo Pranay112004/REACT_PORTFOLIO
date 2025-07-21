@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "custom-hero": "linear-gradient(135deg, #1f4037, #79dbad)",
+      },
       screens: {
         xs: "375px",
         sm: "640px",
