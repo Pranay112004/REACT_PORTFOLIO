@@ -5,6 +5,7 @@ import {
   FaMapMarkerAlt,
   FaPaperPlane,
 } from "react-icons/fa";
+import ScrollFloat from "./ScrollFloat/ScrollFloat.jsx";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -87,14 +88,18 @@ const Contact = () => {
       aria-labelledby="contact-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-          <h2
-            id="contact-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 relative inline-block"
+        <div className="text-center mb-12 sm:mb-16">
+          <ScrollFloat
+            containerClassName="mb-4"
+            textClassName="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 relative inline-block"
+            animationDuration={0.8}
+            scrollStart="top bottom+=20%"
+            scrollEnd="bottom bottom-=10%"
+            stagger={0.02}
           >
             Get In Touch
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-indigo-500 to-teal-500 rounded-full"></div>
-          </h2>
+          </ScrollFloat>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-indigo-500 to-teal-500 rounded-full"></div>
           <p className="text-lg sm:text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
             Let's work together
           </p>
@@ -102,11 +107,17 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Contact Information */}
-          <div className="animate-slide-in-left space-y-8">
+          <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <ScrollFloat
+                textClassName="text-2xl font-bold text-gray-900 mb-4"
+                animationDuration={0.6}
+                scrollStart="top bottom+=20%"
+                scrollEnd="bottom bottom-=10%"
+                stagger={0.015}
+              >
                 Let's Connect
-              </h3>
+              </ScrollFloat>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-md">
                 I'm always interested in hearing about new opportunities and
                 exciting projects. Whether you have a question or just want to
@@ -144,7 +155,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="animate-slide-in-right">
+          <div>
             <form
               onSubmit={handleSubmit}
               className="space-y-6 p-6 sm:p-8 bg-white border border-gray-200 rounded-2xl shadow-lg"
@@ -250,11 +261,17 @@ const Contact = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-12 sm:mt-16 text-center animate-fade-in">
+        <div className="mt-12 sm:mt-16 text-center">
           <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 text-gray-900 shadow-xl max-w-3xl mx-auto">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+            <ScrollFloat
+              textClassName="text-2xl sm:text-3xl font-bold mb-4"
+              animationDuration={2}
+              scrollStart="top bottom+=20%"
+              scrollEnd="bottom bottom-=10%"
+              stagger={0.015}
+            >
               Ready to Start a Project?
-            </h3>
+            </ScrollFloat>
             <p className="text-lg sm:text-xl mb-6 text-gray-600 px-4 sm:px-0">
               Let's discuss how we can bring your ideas to life with modern web
               technologies.
