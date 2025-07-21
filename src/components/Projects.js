@@ -82,27 +82,27 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 lg:py-20 bg-black"
+      className="py-8 xs:py-12 sm:py-16 lg:py-20 bg-black"
       ref={projectsRef}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 sm:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+        <div className="text-center mb-8 xs:mb-12 sm:mb-16 animate-fade-in">
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block"
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 xs:mb-4 relative inline-block"
             aria-label="My Projects Section"
           >
             My Projects
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 xs:w-20 h-1 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full"></div>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-200 mt-6">
+          <p className="text-base xs:text-lg sm:text-xl text-gray-200 mt-4 xs:mt-6">
             Some of my recent work, currently in progress.
           </p>
         </div>
 
         {/* Projects Grid */}
         <div
-          className={`space-y-12 sm:space-y-16 ${
+          className={`space-y-8 xs:space-y-12 sm:space-y-16 ${
             isVisible ? "animate-float" : ""
           }`}
         >
@@ -114,7 +114,7 @@ const Projects = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Project Preview */}
-                <div className="relative h-40 xs:h-48 sm:h-64 md:h-72 lg:h-auto bg-gray-900 overflow-hidden group">
+                <div className="relative h-32 xs:h-40 sm:h-48 md:h-56 lg:h-auto bg-gray-900 overflow-hidden group">
                   <iframe
                     src={project.liveUrl}
                     title={`${project.title} preview`}
@@ -127,36 +127,39 @@ const Projects = () => {
                       )
                     }
                   />
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/80 to-green-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/80 to-cyan-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors duration-300"
+                      className="bg-white/20 backdrop-blur-sm text-white p-2 xs:p-3 rounded-full hover:bg-white/30 transition-colors duration-300"
                       title="View Live Site"
                     >
-                      <FaExternalLinkAlt size={20} className="sm:text-2xl" />
+                      <FaExternalLinkAlt
+                        size={16}
+                        className="xs:size-20 sm:size-24"
+                      />
                     </a>
                   </div>
                 </div>
 
                 {/* Project Info */}
-                <div className="p-4 xs:p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
-                  <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 xs:mb-4">
+                <div className="p-4 xs:p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+                  <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 xs:mb-3 sm:mb-4">
                     {project.title}
                   </h3>
-                  <p className="text-gray-300 text-sm xs:text-base sm:text-lg leading-relaxed mb-4 xs:mb-6">
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed mb-3 xs:mb-4 sm:mb-6">
                     {project.description}
                   </p>
-                  <div className="mb-6 sm:mb-8">
-                    <h4 className="text-xs sm:text-sm font-semibold text-gray-200 mb-3 uppercase tracking-wide">
+                  <div className="mb-4 xs:mb-6 sm:mb-8">
+                    <h4 className="text-2xs xs:text-xs sm:text-sm font-semibold text-gray-200 mb-2 xs:mb-3 uppercase tracking-wide">
                       Technologies Used
                     </h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1 xs:gap-2">
                       {project.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="px-3 py-1 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-full hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
+                          className="px-2 xs:px-3 py-1 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-full hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-2xs xs:text-xs sm:text-sm md:text-base"
                         >
                           {tech}
                         </span>
@@ -168,9 +171,9 @@ const Projects = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-full hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
+                      className="px-4 xs:px-6 py-2 xs:py-3 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-full hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-xs xs:text-sm sm:text-base"
                     >
-                      <FaExternalLinkAlt className="mr-2 text-sm" />
+                      <FaExternalLinkAlt className="inline mr-1 xs:mr-2 text-xs xs:text-sm sm:text-base" />
                       View Live Site
                     </a>
                   </div>
@@ -181,12 +184,12 @@ const Projects = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-12 sm:mt-16 text-center animate-fade-in">
-          <div className="px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-full hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+        <div className="mt-8 xs:mt-12 sm:mt-16 text-center animate-fade-in">
+          <div className="px-4 xs:px-6 py-2 xs:py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-xs xs:text-sm sm:text-base">
+            <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold mb-3 xs:mb-4">
               Interested in Working Together?
             </h3>
-            <p className="text-lg sm:text-xl mb-6 opacity-90 px-4 sm:px-0">
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl mb-4 xs:mb-6 opacity-90 px-2 xs:px-4 sm:px-0">
               I'm always open to discussing new opportunities and exciting
               projects.
             </p>
@@ -196,7 +199,7 @@ const Projects = () => {
                   .getElementById("contact")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-800 text-gray-200 font-semibold rounded-lg hover:bg-gray-700 transition-colors duration-300 transform hover:scale-105 text-sm sm:text-base"
+              className="px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 bg-gray-800 text-gray-200 font-semibold rounded-lg hover:bg-gray-700 transition-colors duration-300 transform hover:scale-105 text-xs xs:text-sm sm:text-base"
               aria-label="Scroll to contact section"
             >
               Let's Talk

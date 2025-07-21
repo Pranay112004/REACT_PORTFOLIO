@@ -47,13 +47,13 @@ const globalAnimationsCss = `
 
 @keyframes pulse-shadow {
   0% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
   }
   70% {
-    box-shadow: 0 0 0 12px rgba(59, 130, 246, 0);
+    box-shadow: 0 0 0 12px rgba(139, 92, 246, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
   }
 }
 
@@ -141,55 +141,55 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-12 sm:py-16 lg:py-20 bg-black"
+      className="py-8 xs:py-12 sm:py-16 lg:py-20 bg-black"
       ref={skillsRef}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block animate-fade-in-up">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 sm:px-8">
+        <div className="text-center mb-8 xs:mb-12 sm:mb-16">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 xs:mb-4 relative inline-block animate-fade-in-up">
             My Skills
             <div
-              className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full ${
+              className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full ${
                 isVisible ? "animate-expand-underline" : ""
               }`}
             ></div>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-200 mt-6 animate-fade-in-up">
+          <p className="text-base xs:text-lg sm:text-xl text-gray-200 mt-4 xs:mt-6 animate-fade-in-up">
             Technologies I work with
           </p>
         </div>
 
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 xs:gap-4 sm:gap-6 lg:gap-8 animate-float">
+        <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-8 animate-float">
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
               <StarBorder
                 key={skill.name}
-                className={`transform transition-transform duration-300 hover:scale-105 w-full ${
+                className={`transform transition-transform duration-300 hover:scale-105 w-full max-w-[200px] xs:max-w-[220px] sm:max-w-[240px] md:max-w-[260px] ${
                   isVisible ? "animate-pop-in" : "opacity-100"
                 }`}
-                color="rgba(59, 130, 246, 0.5)"
+                color="rgba(139, 92, 246, 0.5)"
                 speed="8s"
                 thickness={1}
                 style={{ animationDelay: isVisible ? `${index * 0.1}s` : "0s" }}
                 aria-label={`${skill.name} skill card`}
               >
-                <div className="flex flex-col items-center text-center p-3 xs:p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col items-center text-center p-2 xs:p-3 sm:p-4 lg:p-6">
                   <div
                     className={`
-                      p-2 xs:p-3 sm:p-4 rounded-full 
-                      bg-gradient-to-br from-gray-800 to-gray-900 mb-3 xs:mb-4 sm:mb-6
+                      p-1 xs:p-2 sm:p-3 lg:p-4 rounded-full 
+                      bg-gradient-to-br from-gray-800 to-gray-900 mb-2 xs:mb-3 sm:mb-4
                       transition-all duration-300 
-                      group-hover:scale-110 group-hover:from-blue-700 group-hover:to-green-700
+                      group-hover:scale-110 group-hover:from-purple-600 group-hover:to-cyan-500
                       animate-pulse-shadow-on-hover
                     `}
                     aria-label={`Skill icon for ${skill.name}`}
                   >
                     <Icon
-                      className={`text-3xl xs:text-4xl sm:text-5xl lg:text-6xl ${skill.color}`}
+                      className={`text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${skill.color}`}
                     />
                   </div>
-                  <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-semibold text-white drop-shadow-md mb-1 xs:mb-2 sm:mb-3">
+                  <h3 className="text-sm xs:text-base sm:text-lg lg:text-xl font-semibold text-white drop-shadow-md mb-1 xs:mb-2 sm:mb-3">
                     {skill.name}
                   </h3>
                 </div>
