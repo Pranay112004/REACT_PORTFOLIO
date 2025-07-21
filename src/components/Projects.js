@@ -49,6 +49,22 @@ const Projects = () => {
     },
     {
       id: 2,
+      title: "PRODUCT STORE Website",
+      description:
+        "A fully functional e-commerce platform with product listing, and cart features built using the MERN stack.",
+      technologies: ["React.js", "Tailwind CSS", "MongoDB", "Express.js"],
+      liveUrl: "https://my-buy-sell-web.onrender.com",
+    },
+    {
+      id: 3,
+      title: "Chat-GPT Clone",
+      description:
+        "An AI-powered chatbot interface that provides real-time answers and assistance. Built with React and Python, it mimics the ChatGPT experience with a clean UI and smart responses.",
+      technologies: ["MERN Stack"],
+      liveUrl: "https://gpt-clone-s951.onrender.com",
+    },
+    {
+      id: 4,
       title: "Railway Customer Support Chatbot",
       description:
         "The Railway Chatbot is an AI-powered conversational interface designed to assist users with common railway-related queries. It provides quick, real-time answers about train schedules, ticket booking procedures, platform information, train running status, and other frequently asked questions. Built using React.js for the frontend and powered by a structured dataset (CSV).",
