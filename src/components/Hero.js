@@ -9,10 +9,10 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen relative overflow-hidden bg-custom-hero flex items-center px-4 xs:px-6"
+      className="min-h-screen relative overflow-hidden bg-black flex items-center px-4 xs:px-6"
     >
       {/* Radial glow background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-600 via-transparent to-transparent opacity-10 pointer-events-none z-0"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-600 via-transparent to-transparent opacity-5 pointer-events-none z-0"></div>
 
       {/* Stars background */}
       <div className="absolute inset-0 overflow-hidden z-0">
@@ -44,14 +44,14 @@ const Hero = () => {
             <div className="flex flex-col xs:flex-row gap-3 justify-center lg:justify-start">
               <button
                 onClick={() => handleScroll("projects")}
-                className="px-6 py-3 bg-gradient-to-r from-[#1f4037] to-[#79dbad] text-white font-semibold rounded-full hover:from-[#162c26] hover:to-[#5db79e] transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-full hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
               >
                 View My Work
               </button>
 
               <button
                 onClick={() => handleScroll("contact")}
-                className="px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+                className="px-6 py-3 border-2 border-gray-600 text-gray-200 font-semibold rounded-full hover:bg-gray-700 hover:text-white transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
               >
                 Get In Touch
               </button>
@@ -70,9 +70,8 @@ const Hero = () => {
               <div className="absolute inset-0 rounded-full z-0 animate-ping-ring"></div>
 
               {/* Avatar Image */}
-              {/* Avatar Image */}
-              <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-green-400 p-1 relative z-10">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden animate-float-slow">
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-green-500 p-1 relative z-10">
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden animate-float-slow">
                   <img
                     src="/images/PM.jpg"
                     alt="Pranay Meshram"
@@ -99,9 +98,10 @@ const Hero = () => {
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce-slow z-10">
         <button
           onClick={() => handleScroll("about")}
-          className="text-white hover:text-blue-400 transition-colors duration-300"
+          className="text-gray-200 hover:text-blue-400 transition-colors duration-300"
+          aria-label="Scroll to about section"
         >
-          <FaChevronDown size={24} />
+          <FaChevronDown size={44} />
         </button>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import StarBorder from "./StarBorder/StarBorder.jsx";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -8,6 +9,7 @@ import {
   FaPython,
   FaJava,
   FaGithub,
+  FaTools,
 } from "react-icons/fa";
 import {
   SiMongodb,
@@ -17,9 +19,6 @@ import {
   SiTailwindcss,
 } from "react-icons/si";
 
-import StarBorder from "../components/UI/SplashCursor/StarBorder";
-
-// Injected CSS animations
 const globalAnimationsCss = `
 @keyframes fade-in-up {
   from {
@@ -67,6 +66,18 @@ const globalAnimationsCss = `
   }
 }
 
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-in-out forwards;
 }
@@ -75,6 +86,9 @@ const globalAnimationsCss = `
 }
 .animate-expand-underline {
   animation: expand-underline 1s ease-in-out forwards;
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
 .group:hover .animate-pulse-shadow-on-hover {
   animation: pulse-shadow 1.2s ease-in-out infinite;
@@ -94,15 +108,15 @@ const Skills = () => {
     { name: "Python", icon: FaPython, color: "text-blue-600" },
     { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
     { name: "MySQL", icon: SiMysql, color: "text-blue-700" },
-    { name: "Express.js", icon: SiExpress, color: "text-gray-600" },
-    { name: "Next.js", icon: SiNextdotjs, color: "text-black" },
+    { name: "Express.js", icon: SiExpress, color: "text-gray-400" },
+    { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
     { name: "Java", icon: FaJava, color: "text-red-500" },
-    { name: "GitHub", icon: FaGithub, color: "text-gray-800" },
+    { name: "GitHub", icon: FaGithub, color: "text-gray-200" },
     { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-teal-500" },
+    { name: "Postman", icon: FaTools, color: "text-orange-600" },
   ];
 
   useEffect(() => {
-    // Inject animation CSS into <head>
     const styleSheet = document.createElement("style");
     styleSheet.type = "text/css";
     styleSheet.innerText = globalAnimationsCss;
@@ -124,35 +138,15 @@ const Skills = () => {
     };
   }, []);
 
-  const getSkillDescription = (skillName) => {
-    const descriptions = {
-      HTML5: "",
-      CSS3: "",
-      JavaScript: "",
-      React: "",
-      "Node.js": "",
-      Python: "",
-      MongoDB: "",
-      MySQL: "",
-      "Express.js": "",
-      "Next.js": "",
-      Java: "",
-      GitHub: "",
-      "Tailwind CSS": "",
-    };
-    return descriptions[skillName] || "";
-  };
-
   return (
     <section
       id="skills"
-      className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100"
+      className="py-12 sm:py-16 lg:py-20 bg-black"
       ref={skillsRef}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 relative inline-block animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block animate-fade-in-up">
             My Skills
             <div
               className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full ${
@@ -160,25 +154,21 @@ const Skills = () => {
               }`}
             ></div>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-700 mt-6 animate-fade-in">
+          <p className="text-lg sm:text-xl text-gray-200 mt-6 animate-fade-in-up">
             Technologies I work with
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 xs:gap-4 sm:gap-6 lg:gap-8 animate-float">
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
               <StarBorder
-                as="button"
                 key={skill.name}
-                className={`transform transition-transform duration-300 hover:scale-105
-                  w-full custom-class ${
-                    isVisible ? "animate-pop-in" : "opacity-20"
-                  }
-                `}
-                color="rgba(1, 1, 1, 0.5)"
+                className={`transform transition-transform duration-300 hover:scale-105 w-full ${
+                  isVisible ? "animate-pop-in" : "opacity-100"
+                }`}
+                color="rgba(59, 130, 246, 0.5)"
                 speed="8s"
                 thickness={1}
                 style={{ animationDelay: isVisible ? `${index * 0.1}s` : "0s" }}
@@ -188,9 +178,9 @@ const Skills = () => {
                   <div
                     className={`
                       p-2 xs:p-3 sm:p-4 rounded-full 
-                      bg-gradient-to-br from-blue-100 to-green-100 mb-3 xs:mb-4 sm:mb-6
+                      bg-gradient-to-br from-gray-800 to-gray-900 mb-3 xs:mb-4 sm:mb-6
                       transition-all duration-300 
-                      group-hover:scale-110 group-hover:from-blue-200 group-hover:to-green-200
+                      group-hover:scale-110 group-hover:from-blue-700 group-hover:to-green-700
                       animate-pulse-shadow-on-hover
                     `}
                     aria-label={`Skill icon for ${skill.name}`}
@@ -199,12 +189,9 @@ const Skills = () => {
                       className={`text-3xl xs:text-4xl sm:text-5xl lg:text-6xl ${skill.color}`}
                     />
                   </div>
-                  <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-semibold text-slate-100 drop-shadow-md mb-1 xs:mb-2 sm:mb-3">
+                  <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-semibold text-white drop-shadow-md mb-1 xs:mb-2 sm:mb-3">
                     {skill.name}
                   </h3>
-                  <p className="text-xs xs:text-sm sm:text-base text-gray-300 leading-relaxed drop-shadow-sm">
-                    {getSkillDescription(skill.name)}
-                  </p>
                 </div>
               </StarBorder>
             );
