@@ -1,3 +1,4 @@
+/* ---- BASE AND IMPORTS ---- */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
@@ -15,32 +16,77 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 100%;
+  background: #000; /* Ensuring black background as requested */
 }
 
-/* Custom animations and utilities */
-.gradient-text {
+* {
+  box-sizing: border-box;
+}
+
+/* ---- NEW & MERGED ANIMATIONS ---- */
+
+/* Utility for staggered text reveal (from my suggestion) */
+.animate-fade-in-up {
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+/* Merged Animated Gradient Text */
+/* Uses the class from the new Hero component but with your original gradient colors */
+.animated-gradient-text {
   background: linear-gradient(90deg, #64ffda, #1d8cf8, #ff6bcb);
   background-size: 300% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shine 4s linear infinite;
+  animation: gradientShine 4s linear infinite; /* Uses the animation from tailwind.config.js */
 }
 
-@keyframes shine {
-  0% {
-    background-position: 0% center;
-  }
-  100% {
-    background-position: 300% center;
-  }
+/* New Button Shine Effect (from my suggestion) */
+.btn-shine,
+.btn-shine-secondary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
 }
+
+.btn-shine:hover,
+.btn-shine-secondary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), 0 0 30px rgba(34, 211, 238, 0.3);
+}
+
+.btn-shine::before,
+.btn-shine-secondary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.btn-shine:hover::before,
+.btn-shine-secondary:hover::before {
+  left: 100%;
+}
+
+/* ---- YOUR CUSTOM STYLES (PRESERVED) ---- */
 
 .skill-progress {
   transition: width 2s ease-in-out;
 }
 
-/* Star animation - matching original portfolio */
+/* Your original star animation */
 .stars {
   position: absolute;
   width: 4px;
@@ -92,10 +138,11 @@ body {
   bottom: 0;
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
   background-size: cover;
-  animation: float 4s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite; /* Note: The 'float' keyframe is defined in your tailwind.config.js */
 }
 
-/* Responsive utilities */
+/* ---- YOUR RESPONSIVE & UTILITY STYLES (PRESERVED) ---- */
+
 @media (max-width: 640px) {
   .stars {
     box-shadow: 650px 300px #fff, 200px 600px #fff, 900px 200px #fff,
@@ -115,66 +162,30 @@ body {
   }
 }
 
-/* Ensure smooth scrolling on mobile */
 @media (max-width: 768px) {
   html {
     scroll-padding-top: 80px;
   }
+
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .nav-link,
+  .btn {
+    padding: 0.75rem 1rem;
+  }
 }
 
-/* Fix viewport issues on mobile */
 @supports (-webkit-touch-callout: none) {
   .min-h-screen {
     min-height: -webkit-fill-available;
   }
 }
 
-/* Enhanced responsive utilities */
-@media (max-width: 374px) {
-  /* Extra small phones */
-  .container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .text-responsive-xs {
-    font-size: 0.75rem;
-    line-height: 1rem;
-  }
-}
-
-@media (min-width: 375px) and (max-width: 639px) {
-  /* Small phones */
-  .text-responsive-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-}
-
-@media (min-width: 640px) and (max-width: 767px) {
-  /* Large phones / Small tablets */
-  .text-responsive-md {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Tablets */
-  .grid-responsive-tablet {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1279px) {
-  /* Small laptops */
-  .grid-responsive-laptop {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 @media (min-width: 1920px) {
-  /* 4K and ultra-wide screens */
   .container {
     max-width: 1600px;
   }
@@ -185,33 +196,6 @@ body {
   }
 }
 
-/* Prevent horizontal scroll on all devices */
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-/* Enhanced touch targets for mobile */
-@media (max-width: 768px) {
-  button,
-  a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  /* Improve tap targets */
-  .nav-link,
-  .btn {
-    padding: 0.75rem 1rem;
-  }
-}
-
-/* Print styles */
 @media print {
   .no-print {
     display: none !important;

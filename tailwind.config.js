@@ -3,6 +3,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      // YOUR EXISTING EXTENSIONS ARE PRESERVED
       backgroundImage: {
         "custom-hero": "linear-gradient(135deg, #1f4037, #79dbad)",
       },
@@ -45,12 +46,15 @@ module.exports = {
           900: "#7f1d1d",
         },
       },
+
+      // MERGED ANIMATIONS
       animation: {
+        // Your existing animations
         "fade-in": "fadeIn 0.6s ease-in-out",
         "slide-in-left": "slideInLeft 0.8s ease-out",
         "slide-in-right": "slideInRight 0.8s ease-out",
         "bounce-slow": "bounce 2s infinite",
-        "pulse-slow": "pulse 3s infinite",
+        "pulse-slow": "pulse 3s infinite", // Note: I also suggested a 'pulse-slow', you can keep yours or adjust as needed.
         float: "float 4s ease-in-out infinite",
         "float-slow": "floatSlow 6s ease-in-out infinite",
         shine: "shine 4s linear infinite",
@@ -58,8 +62,15 @@ module.exports = {
         "star-movement-bottom":
           "star-movement-bottom linear infinite alternate",
         "star-movement-top": "star-movement-top linear infinite alternate",
+
+        // ** NEW ANIMATIONS ADDED **
+        "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+        "gradient-shine": "gradientShine 4s linear infinite",
       },
+
+      // MERGED KEYFRAMES
       keyframes: {
+        // Your existing keyframes
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
@@ -96,6 +107,23 @@ module.exports = {
         "star-movement-top": {
           "0%": { transform: "translate(0%, 0%)", opacity: "1" },
           "100%": { transform: "translate(100%, 0%)", opacity: "0" },
+        },
+
+        // ** NEW KEYFRAMES ADDED **
+        fadeInUp: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        gradientShine: {
+          "0%": { "background-position": "0% 50%" },
+          "50%": { "background-position": "100% 50%" },
+          "100%": { "background-position": "0% 50%" },
         },
       },
     },

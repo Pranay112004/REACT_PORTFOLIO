@@ -1,121 +1,182 @@
-import React from "react";
-import TextType from "./TextType/TextType.jsx";
-import ScrollFloat from "./ScrollFloat/ScrollFloat.jsx";
+import React, { useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Tilt from "react-parallax-tilt";
+import { FaCode, FaPalette, FaDatabase, FaLink } from "react-icons/fa";
+
+// A Framer Motion powered typing effect
+const TypingEffect = ({ texts, speed = 80, delay = 2000 }) => {
+  const [currentText, setCurrentText] = useState("");
+  const [textIndex, setTextIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const fullText = texts[textIndex];
+      setCurrentText(
+        isDeleting
+          ? fullText.substring(0, currentText.length - 1)
+          : fullText.substring(0, currentText.length + 1)
+      );
+
+      if (!isDeleting && currentText === fullText) {
+        setTimeout(() => setIsDeleting(true), delay);
+      } else if (isDeleting && currentText === "") {
+        setIsDeleting(false);
+        setTextIndex((prev) => (prev + 1) % texts.length);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, isDeleting ? speed / 2 : speed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, textIndex, texts, speed, delay]);
+
+  return (
+    <span className="text-purple-400">
+      {currentText}
+      <motion.span
+        className="inline-block w-0.5 h-full bg-purple-400"
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 0.8, repeat: Infinity }}
+      />
+    </span>
+  );
+};
 
 const About = () => {
+  const controls = useAnimation();
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const whatIDo = [
+    { icon: FaCode, text: "Full-Stack Web Development" },
+    { icon: FaPalette, text: "Responsive Design & UI/UX" },
+    { icon: FaDatabase, text: "Database Design & Management" },
+    { icon: FaLink, text: "API Development & Integration" },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
     <section
       id="about"
-      className="py-8 xs:py-12 sm:py-16 lg:py-20 bg-black text-white"
+      className="relative py-24 bg-black text-white overflow-hidden"
+      ref={ref}
     >
-      <div className="max-w-7xl mx-auto px-4 xs:px-6 sm:px-8">
-        {/* Heading Section */}
-        <div className="text-center mb-8 xs:mb-12 sm:mb-16">
-          <div className="relative inline-block">
-            <ScrollFloat
-              containerClassName="mb-4"
-              textClassName="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center"
-            >
-              About Me
-            </ScrollFloat>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 xs:w-20 h-1 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full"></div>
-          </div>
+      {/* Aurora Background */}
+      <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/4 w-96 h-96 bg-purple-600/20 rounded-full filter blur-3xl opacity-50 animate-pulse"></div>
+      <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-96 h-96 bg-cyan-600/20 rounded-full filter blur-3xl opacity-50 animate-pulse animation-delay-3000"></div>
 
-          <ScrollFloat
-            containerClassName="mt-4 xs:mt-6"
-            textClassName="text-base xs:text-lg sm:text-xl text-gray-300"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
+          <p className="text-lg md:text-xl text-gray-400">
+            A little bit about my journey.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
+          {/* Left Side: Image */}
+          <motion.div
+            className="lg:col-span-2 flex justify-center"
+            variants={imageVariants}
           >
-            Get to know me better
-          </ScrollFloat>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8 lg:gap-12 items-center">
-          {/* Left Content */}
-          <div className="order-2 lg:order-1">
-            <div className="space-y-4 xs:space-y-6">
-              <p className="text-sm xs:text-base sm:text-lg text-gray-300 leading-relaxed px-2 xs:px-4 sm:px-0">
-                I'm a passionate{" "}
-                <TextType
-                  text={[
-                    "Full Stack Developer",
-                    "Problem Solver",
-                    "Tech Enthusiast",
-                    "Team Player",
-                  ]}
-                  typingSpeed={60}
-                  deletingSpeed={40}
-                  pauseDuration={1600}
-                  loop={true}
-                  className="text-xs xs:text-sm sm:text-base md:text-lg font-semibold text-purple-400"
-                  cursorClassName="text-purple-400"
-                />{" "}
-                with experience in creating dynamic, user-friendly web
-                applications.
-              </p>
-              <p className="text-sm xs:text-base sm:text-lg text-gray-300 leading-relaxed px-2 xs:px-4 sm:px-0">
-                My journey in web development started with curiosity and evolved
-                into a continuous learning career.
-              </p>
-
-              <div className="mt-4 xs:mt-6 sm:mt-8">
-                <h3 className="text-lg xs:text-xl sm:text-2xl font-semibold text-white mb-3 xs:mb-4 text-center lg:text-left">
-                  What I Do
-                </h3>
-                <ul className="space-y-2 xs:space-y-3 max-w-sm xs:max-w-md lg:max-w-md mx-auto lg:mx-0">
-                  <li className="flex items-center">
-                    <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-purple-600 rounded-full mr-2 xs:mr-3 flex-shrink-0"></div>
-                    <span className="text-xs xs:text-sm sm:text-base text-gray-300">
-                      Full-Stack Web Development
-                    </span>
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-cyan-500 rounded-full mr-2 xs:mr-3 flex-shrink-0"></div>
-                    <span className="text-xs xs:text-sm sm:text-base text-gray-300">
-                      Responsive Design & UI/UX
-                    </span>
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-purple-400 rounded-full mr-2 xs:mr-3 flex-shrink-0"></div>
-                    <span className="text-xs xs:text-sm sm:text-base text-gray-300">
-                      Database Design & Management
-                    </span>
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-cyan-400 rounded-full mr-2 xs:mr-3 flex-shrink-0"></div>
-                    <span className="text-xs xs:text-sm sm:text-base text-gray-300">
-                      API Development & Integration
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Image */}
-          <div className="flex justify-center order-1 lg:order-2 mb-4 xs:mb-6 lg:mb-0">
-            <div className="relative">
-              <div className="w-40 h-40 xs:w-48 xs:h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full bg-gradient-to-br from-purple-600 to-cyan-500 p-0.5 xs:p-1 shadow-xl">
-                <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center overflow-hidden">
+            <Tilt tiltMaxAngleX={7} tiltMaxAngleY={7} perspective={1000}>
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full p-1.5 bg-gradient-to-tr from-purple-600 to-cyan-400 animate-pulse">
+                <div className="w-full h-full bg-gray-900 rounded-full p-2">
                   <img
                     src="/images/IMG_3301.jpg"
-                    alt="About Me"
+                    alt="Pranay Meshram"
                     className="w-full h-full object-cover rounded-full"
                     onError={(e) => {
-                      e.target.style.display = "none";
-                      e.target.nextSibling.style.display = "flex";
+                      e.target.src = "/images/IMG_3301.jpg";
                     }}
                   />
-                  <div
-                    className="w-full h-full bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center text-white text-2xl xs:text-3xl sm:text-4xl font-bold"
-                    style={{ display: "none" }}
-                  >
-                    PM
-                  </div>
                 </div>
               </div>
-            </div>
+            </Tilt>
+          </motion.div>
+
+          {/* Right Side: Content */}
+          <div className="lg:col-span-3 space-y-8">
+            <motion.p
+              className="text-lg sm:text-xl text-gray-300 leading-relaxed"
+              variants={itemVariants}
+            >
+              I'm a passionate{" "}
+              <TypingEffect
+                texts={[
+                  "Full Stack Developer.",
+                  "Problem Solver.",
+                  "Tech Enthusiast.",
+                  "Team Player.",
+                ]}
+              />{" "}
+              With experience in creating dynamic, user-friendly web
+              applications.
+            </motion.p>
+            <motion.p
+              className="text-lg sm:text-xl text-gray-300 leading-relaxed"
+              variants={itemVariants}
+            >
+              My journey in web development started with curiosity and has
+              evolved into a career of continuous learning and creation.
+            </motion.p>
+
+            <motion.div variants={itemVariants}>
+              <h3 className="text-2xl font-semibold text-white mb-4">
+                What I Do
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {whatIDo.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-lg"
+                  >
+                    <item.icon className="text-cyan-400 text-xl flex-shrink-0" />
+                    <span className="text-gray-300">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

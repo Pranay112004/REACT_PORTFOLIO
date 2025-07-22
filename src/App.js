@@ -10,14 +10,20 @@ import SplashCursor from "./components/UI/SplashCursor/SplashCursor";
 
 function App() {
   return (
+    // The parent div is great for global styling
     <div className="App">
       <SplashCursor />
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+
+      {/* Wrap the main sections in a <main> tag */}
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
+
       <Footer />
     </div>
   );

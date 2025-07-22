@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import StarBorder from "./StarBorder/StarBorder.jsx";
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Tilt from "react-parallax-tilt";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -19,184 +21,149 @@ import {
   SiTailwindcss,
 } from "react-icons/si";
 
-const globalAnimationsCss = `
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pop-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-  70% {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes pulse-shadow {
-  0% {
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 12px rgba(139, 92, 246, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
-  }
-}
-
-@keyframes expand-underline {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-in-out forwards;
-}
-.animate-pop-in {
-  animation: pop-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-.animate-expand-underline {
-  animation: expand-underline 1s ease-in-out forwards;
-}
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-.group:hover .animate-pulse-shadow-on-hover {
-  animation: pulse-shadow 1.2s ease-in-out infinite;
-}
-`;
+// Categorized skills for better organization
+const skillCategories = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "HTML5", icon: FaHtml5, color: "text-orange-500" },
+      { name: "CSS3", icon: FaCss3Alt, color: "text-blue-500" },
+      { name: "JavaScript", icon: FaJs, color: "text-yellow-500" },
+      { name: "React", icon: FaReact, color: "text-cyan-400" },
+      { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-cyan-500" },
+    ],
+  },
+  {
+    title: "Backend & Databases",
+    skills: [
+      { name: "Node.js", icon: FaNodeJs, color: "text-green-500" },
+      { name: "Express.js", icon: SiExpress, color: "text-gray-400" },
+      { name: "Python", icon: FaPython, color: "text-blue-400" },
+      { name: "Java", icon: FaJava, color: "text-red-500" },
+      { name: "MongoDB", icon: SiMongodb, color: "text-green-400" },
+      { name: "MySQL", icon: SiMysql, color: "text-blue-600" },
+    ],
+  },
+  {
+    title: "Tools & Platforms",
+    skills: [
+      { name: "GitHub", icon: FaGithub, color: "text-gray-300" },
+      { name: "Postman", icon: FaTools, color: "text-orange-600" },
+    ],
+  },
+];
 
 const Skills = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const skillsRef = useRef(null);
-
-  const skills = [
-    { name: "HTML5", icon: FaHtml5, color: "text-orange-500" },
-    { name: "CSS3", icon: FaCss3Alt, color: "text-blue-500" },
-    { name: "JavaScript", icon: FaJs, color: "text-yellow-500" },
-    { name: "React", icon: FaReact, color: "text-cyan-500" },
-    { name: "Node.js", icon: FaNodeJs, color: "text-green-600" },
-    { name: "Python", icon: FaPython, color: "text-blue-600" },
-    { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
-    { name: "MySQL", icon: SiMysql, color: "text-blue-700" },
-    { name: "Express.js", icon: SiExpress, color: "text-gray-400" },
-    { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
-    { name: "Java", icon: FaJava, color: "text-red-500" },
-    { name: "GitHub", icon: FaGithub, color: "text-gray-200" },
-    { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-teal-500" },
-    { name: "Postman", icon: FaTools, color: "text-orange-600" },
-  ];
+  const controls = useAnimation();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   useEffect(() => {
-    const styleSheet = document.createElement("style");
-    styleSheet.type = "text/css";
-    styleSheet.innerText = globalAnimationsCss;
-    document.head.appendChild(styleSheet);
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
       },
-      { threshold: 0.3 }
-    );
+    },
+  };
 
-    const currentRef = skillsRef.current;
-    if (currentRef) observer.observe(currentRef);
+  const categoryVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
 
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-      document.head.removeChild(styleSheet);
-    };
-  }, []);
+  const skillVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 1, 0.5, 1], // A nice bouncy ease
+      },
+    },
+  };
 
   return (
     <section
       id="skills"
-      className="py-8 xs:py-12 sm:py-16 lg:py-20 bg-black"
-      ref={skillsRef}
+      className="relative py-20 bg-black overflow-hidden"
+      ref={ref}
     >
-      <div className="max-w-7xl mx-auto px-4 xs:px-6 sm:px-8">
-        <div className="text-center mb-8 xs:mb-12 sm:mb-16">
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 xs:mb-4 relative inline-block animate-fade-in-up">
-            My Skills
-            <div
-              className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full ${
-                isVisible ? "animate-expand-underline" : ""
-              }`}
-            ></div>
-          </h2>
-          <p className="text-base xs:text-lg sm:text-xl text-gray-200 mt-4 xs:mt-6 animate-fade-in-up">
-            Technologies I work with
-          </p>
-        </div>
+      {/* Aurora Background Effect */}
+      <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-purple-600/30 rounded-full filter blur-3xl opacity-50 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-96 h-96 bg-cyan-600/30 rounded-full filter blur-3xl opacity-50 animate-pulse animation-delay-4000"></div>
 
-        <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-8 animate-float">
-          {skills.map((skill, index) => {
-            const Icon = skill.icon;
-            return (
-              <StarBorder
-                key={skill.name}
-                className={`transform transition-transform duration-300 hover:scale-105 w-full max-w-[200px] xs:max-w-[220px] sm:max-w-[240px] md:max-w-[260px] ${
-                  isVisible ? "animate-pop-in" : "opacity-100"
-                }`}
-                color="rgba(139, 92, 246, 0.5)"
-                speed="8s"
-                thickness={1}
-                style={{ animationDelay: isVisible ? `${index * 0.1}s` : "0s" }}
-                aria-label={`${skill.name} skill card`}
-              >
-                <div className="flex flex-col items-center text-center p-2 xs:p-3 sm:p-4 lg:p-6">
-                  <div
-                    className={`
-                      p-1 xs:p-2 sm:p-3 lg:p-4 rounded-full 
-                      bg-gradient-to-br from-gray-800 to-gray-900 mb-2 xs:mb-3 sm:mb-4
-                      transition-all duration-300 
-                      group-hover:scale-110 group-hover:from-purple-600 group-hover:to-cyan-500
-                      animate-pulse-shadow-on-hover
-                    `}
-                    aria-label={`Skill icon for ${skill.name}`}
-                  >
-                    <Icon
-                      className={`text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${skill.color}`}
-                    />
-                  </div>
-                  <h3 className="text-sm xs:text-base sm:text-lg lg:text-xl font-semibold text-white drop-shadow-md mb-1 xs:mb-2 sm:mb-3">
-                    {skill.name}
-                  </h3>
-                </div>
-              </StarBorder>
-            );
-          })}
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
+            My Technical Skills
+            <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"></div>
+          </h2>
+          <p className="text-lg md:text-xl text-gray-300 mt-6">
+            A collection of technologies I use to bring ideas to life.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="space-y-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
+          {skillCategories.map((category) => (
+            <motion.div key={category.title} variants={categoryVariants}>
+              <h3 className="text-2xl font-semibold text-white mb-6 border-l-4 border-purple-500 pl-4">
+                {category.title}
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                {category.skills.map((skill) => (
+                  <motion.div key={skill.name} variants={skillVariants}>
+                    <Tilt
+                      tiltMaxAngleX={10}
+                      tiltMaxAngleY={10}
+                      perspective={1000}
+                      glareEnable={true}
+                      glareMaxOpacity={0.2}
+                      glarePosition="all"
+                    >
+                      <div className="group relative w-full h-32 sm:h-36 flex flex-col items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-white/10 transition-all duration-300 hover:border-purple-500/50 hover:bg-gray-900/80">
+                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                        <skill.icon
+                          className={`text-4xl sm:text-5xl mb-3 transition-colors duration-300 ${skill.color}`}
+                        />
+                        <h4 className="text-sm sm:text-base font-medium text-white text-center">
+                          {skill.name}
+                        </h4>
+                      </div>
+                    </Tilt>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

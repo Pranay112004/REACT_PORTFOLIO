@@ -1,49 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
-
-const globalAnimationsCss = `
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.8s ease-in-out forwards;
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-`;
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Tilt from "react-parallax-tilt";
 
 const Projects = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const projectsRef = useRef(null);
-
   const projects = [
     {
       id: 1,
       title: "VJTI SHOP Website",
       description:
-        "A full-stack e-commerce platform with HTML, CSS, JS, and Python. VJTI Shop is a web-based e-commerce platform designed to serve the students of Veermata Jijabai Technological Institute (VJTI). The platform allows users to browse and purchase Notes, Books, lost items, and can sell college-related items.",
+        "A full-stack e-commerce platform for students to buy and sell college-related items.",
       technologies: ["HTML", "CSS", "Python", "JavaScript"],
       liveUrl: "https://vjti-web.onrender.com",
     },
@@ -52,185 +19,135 @@ const Projects = () => {
       title: "PRODUCT STORE Website",
       description:
         "A fully functional e-commerce platform with product listing, and cart features built using the MERN stack.",
-      technologies: ["React.js", "Tailwind CSS", "MongoDB", "Express.js"],
+      technologies: ["React.js", "Tailwind CSS", "MongoDB"],
       liveUrl: "https://my-buy-sell-web.onrender.com",
     },
     {
       id: 3,
       title: "Chat-GPT Clone",
       description:
-        "An AI-powered chatbot interface that provides real-time answers and assistance. Built with React and Python, it mimics the ChatGPT experience with a clean UI and smart responses.",
-      technologies: ["MERN Stack"],
+        "An AI-powered chatbot interface that mimics the ChatGPT experience with a clean UI and smart responses.",
+      technologies: ["MERN Stack", "AI"],
       liveUrl: "https://gpt-clone-s951.onrender.com",
     },
     {
       id: 4,
       title: "YOUTUBE-CLONE",
       description:
-        "The YouTube Clone is a full-stack video streaming application that replicates the core functionalities of YouTube. Built with React.js on the frontend and integrated with dynamic routing, search functionality, and video playback, this clone allows users to browse, search, and watch videos in a clean, responsive UI.",
-      technologies: ["Vite+react", "Tailwind -CSS", "React Router"],
+        "A full-stack video streaming application that replicates the core functionalities of YouTube.",
+      technologies: ["Vite+react", "Tailwind CSS", "React Router"],
       liveUrl: "https://youtube-clone-beige-beta.vercel.app",
     },
-
     {
       id: 5,
       title: "Rock-Paper-Scissors Game",
       description:
-        " A simple rock-paper-scissors game built using React.js and CSS. Users can play against the computer or against each other. The game keeps track of the score and displays the winner",
+        "A simple rock-paper-scissors game built using React.js and CSS. Play against the computer!",
       technologies: ["React", "CSS", "JavaScript"],
       liveUrl: "https://rps-gamee-zeta.vercel.app",
     },
   ];
 
+  const controls = useAnimation();
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
   useEffect(() => {
-    const styleSheet = document.createElement("style");
-    styleSheet.type = "text/css";
-    styleSheet.innerText = globalAnimationsCss;
-    document.head.appendChild(styleSheet);
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.2 } },
+  };
 
-    const currentRef = projectsRef.current;
-    if (currentRef) observer.observe(currentRef);
-
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-      document.head.removeChild(styleSheet);
-    };
-  }, []);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   return (
-    <section
-      id="projects"
-      className="py-8 xs:py-12 sm:py-16 lg:py-20 bg-black"
-      ref={projectsRef}
-    >
-      <div className="max-w-7xl mx-auto px-4 xs:px-6 sm:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-8 xs:mb-12 sm:mb-16 animate-fade-in">
-          <h2
-            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 xs:mb-4 relative inline-block"
-            aria-label="My Projects Section"
-          >
-            My Projects
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 xs:w-20 h-1 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full"></div>
-          </h2>
-          <p className="text-base xs:text-lg sm:text-xl text-gray-200 mt-4 xs:mt-6">
-            Some of my recent work, currently in progress.
-          </p>
-        </div>
-
-        {/* Projects Grid */}
-        <div
-          className={`space-y-8 xs:space-y-12 sm:space-y-16 ${
-            isVisible ? "animate-float" : ""
-          }`}
+    <section id="projects" className="py-20 bg-gray-900 text-white" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 animate-fade-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                {/* Project Preview */}
-                <div className="relative h-32 xs:h-40 sm:h-48 md:h-56 lg:h-auto bg-gray-900 overflow-hidden group">
-                  <iframe
-                    src={project.liveUrl}
-                    title={`${project.title} preview`}
-                    className="w-full h-full border-0 transform group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin"
-                    onError={() =>
-                      console.error(
-                        `Failed to load iframe for ${project.title}`
-                      )
-                    }
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/80 to-cyan-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white/20 backdrop-blur-sm text-white p-2 xs:p-3 rounded-full hover:bg-white/30 transition-colors duration-300"
-                      title="View Live Site"
-                    >
-                      <FaExternalLinkAlt
-                        size={16}
-                        className="xs:size-20 sm:size-24"
-                      />
-                    </a>
-                  </div>
-                </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 relative inline-block">
+            My Creations
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"></div>
+          </h2>
+          <p className="text-lg md:text-xl text-gray-400 mt-6">
+            A showcase of my passion for building and creating.
+          </p>
+        </motion.div>
 
-                {/* Project Info */}
-                <div className="p-4 xs:p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                  <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 xs:mb-3 sm:mb-4">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed mb-3 xs:mb-4 sm:mb-6">
-                    {project.description}
-                  </p>
-                  <div className="mb-4 xs:mb-6 sm:mb-8">
-                    <h4 className="text-2xs xs:text-xs sm:text-sm font-semibold text-gray-200 mb-2 xs:mb-3 uppercase tracking-wide">
-                      Technologies Used
-                    </h4>
-                    <div className="flex flex-wrap gap-1 xs:gap-2">
-                      {project.technologies.map((tech, techIndex) => (
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
+          {projects.map((project) => (
+            <motion.div key={project.id} variants={itemVariants}>
+              <Tilt
+                tiltMaxAngleX={5}
+                tiltMaxAngleY={5}
+                perspective={1000}
+                glareEnable={true}
+                glareMaxOpacity={0.15}
+                glarePosition="all"
+              >
+                <div className="bg-white/5 backdrop-blur-sm border border-gray-700 rounded-2xl shadow-lg h-full flex flex-col transition-all duration-300 hover:border-purple-500/50">
+                  <div className="p-6">
+                    <div className="relative h-48 mb-6 overflow-hidden rounded-lg">
+                      <iframe
+                        src={project.liveUrl}
+                        title={`${project.title} preview`}
+                        className="w-full h-full border-0"
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin"
+                      />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-purple-600 text-white py-2 px-4 rounded-full flex items-center gap-2"
+                        >
+                          <FaExternalLinkAlt />
+                          Live Demo
+                        </a>
+                      </div>
+                    </div>
+
+                    <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
+                    <p className="text-gray-400 mb-4 h-24 overflow-y-auto">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech, i) => (
                         <span
-                          key={techIndex}
-                          className="px-2 xs:px-3 py-1 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-full hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-2xs xs:text-xs sm:text-sm md:text-base"
+                          key={i}
+                          className="bg-gray-700/50 text-purple-300 text-xs font-semibold px-3 py-1 rounded-full"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="flex justify-center lg:justify-start">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 xs:px-6 py-2 xs:py-3 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-full hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-xs xs:text-sm sm:text-base"
-                    >
-                      <FaExternalLinkAlt className="inline mr-1 xs:mr-2 text-xs xs:text-sm sm:text-base" />
-                      View Live Site
-                    </a>
-                  </div>
                 </div>
-              </div>
-            </div>
+              </Tilt>
+            </motion.div>
           ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="mt-8 xs:mt-12 sm:mt-16 text-center animate-fade-in">
-          <div className="px-4 xs:px-6 py-2 xs:py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-xs xs:text-sm sm:text-base">
-            <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold mb-3 xs:mb-4">
-              Interested in Working Together?
-            </h3>
-            <p className="text-sm xs:text-base sm:text-lg md:text-xl mb-4 xs:mb-6 opacity-90 px-2 xs:px-4 sm:px-0">
-              I'm always open to discussing new opportunities and exciting
-              projects.
-            </p>
-            <button
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 bg-gray-800 text-gray-200 font-semibold rounded-lg hover:bg-gray-700 transition-colors duration-300 transform hover:scale-105 text-xs xs:text-sm sm:text-base"
-              aria-label="Scroll to contact section"
-            >
-              Let's Talk
-            </button>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

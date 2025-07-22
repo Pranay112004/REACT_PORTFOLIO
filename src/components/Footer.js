@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
@@ -7,147 +9,139 @@ const Footer = () => {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/pranay-suresh-meshram-698a6334a",
       icon: FaLinkedin,
-      color: "hover:text-purple-400",
     },
-    {
-      name: "GitHub",
-      url: "https://github.com/Pranay112004",
-      icon: FaGithub,
-      color: "hover:text-cyan-400",
-    },
-    {
-      name: "Twitter",
-      url: "#",
-      icon: FaTwitter,
-      color: "hover:text-purple-400",
-    },
+    { name: "GitHub", url: "https://github.com/Pranay112004", icon: FaGithub },
+    { name: "Twitter", url: "#", icon: FaTwitter },
     {
       name: "Instagram",
       url: "https://www.instagram.com/_pranay_meshram_11",
       icon: FaInstagram,
-      color: "hover:text-cyan-400",
     },
   ];
 
+  const quickLinks = ["Home", "About", "Skills", "Projects", "Contact"];
   const currentYear = new Date().getFullYear();
 
+  const controls = useAnimation();
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 xs:px-6 sm:px-8 py-6 xs:py-8 sm:py-12 lg:py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 lg:gap-10 mb-4 xs:mb-6 sm:mb-8">
+    <footer
+      id="footer"
+      className="relative bg-black text-white pt-16 pb-8 overflow-hidden"
+      ref={ref}
+    >
+      {/* Aurora Background */}
+      <div className="absolute top-0 left-0 -translate-x-1/2 w-96 h-96 bg-purple-600/10 rounded-full filter blur-3xl opacity-50"></div>
+      <div className="absolute top-0 right-0 translate-x-1/2 w-96 h-96 bg-cyan-600/10 rounded-full filter blur-3xl opacity-50"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
           {/* About Section */}
-          <div className="space-y-2 xs:space-y-3 sm:space-y-4 text-center sm:text-left">
-            <h3 className="text-lg xs:text-xl sm:text-2xl font-bold">
-              Pranay Meshram
-            </h3>
-            <p className="text-xs xs:text-sm sm:text-base text-gray-400 leading-relaxed">
-              Full Stack Developer passionate about creating innovative web
-              solutions that make a difference. Always learning, always
-              building.
+          <motion.div
+            className="space-y-4 md:col-span-1"
+            variants={itemVariants}
+          >
+            <h3 className="text-2xl font-bold text-white">Pranay Meshram</h3>
+            <p className="text-gray-400">
+              Full Stack Developer crafting digital experiences.
             </p>
-            <div className="flex space-x-2 xs:space-x-3 sm:space-x-4 justify-center sm:justify-start">
-              {socialLinks.map((social, index) => {
-                const IconComponent = social.icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 ${social.color} hover:bg-gray-700`}
-                    aria-label={social.name}
-                  >
-                    <IconComponent
-                      size={14}
-                      className="xs:size-16 sm:size-18"
-                    />
-                  </a>
-                );
-              })}
+            <div className="flex space-x-4 pt-2">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white"
+                  aria-label={social.name}
+                  whileHover={{ scale: 1.2, y: -2, color: "#a78bfa" }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <social.icon size={24} />
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div className="space-y-2 xs:space-y-3 sm:space-y-4 text-center sm:text-left">
-            <h4 className="text-sm xs:text-base sm:text-lg font-semibold">
-              Quick Links
-            </h4>
-            <ul className="space-y-1 xs:space-y-2">
-              {["Home", "About", "Skills", "Projects", "Contact"].map(
-                (item, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() =>
-                        document
-                          .getElementById(item.toLowerCase())
-                          ?.scrollIntoView({ behavior: "smooth" })
-                      }
-                      className="text-xs xs:text-sm sm:text-base text-gray-400 hover:text-purple-400 transition-colors duration-300"
-                    >
-                      {item}
-                    </button>
-                  </li>
-                )
-              )}
+          <motion.div className="space-y-4" variants={itemVariants}>
+            <h4 className="text-lg font-semibold text-white">Quick Links</h4>
+            <ul className="space-y-2">
+              {quickLinks.map((item) => (
+                <li key={item}>
+                  <button
+                    onClick={() =>
+                      document
+                        .getElementById(item.toLowerCase())
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
+                    className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
+                  >
+                    {item}
+                  </button>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div className="space-y-2 xs:space-y-3 sm:space-y-4 text-center sm:text-left sm:col-span-2 lg:col-span-1">
-            <h4 className="text-sm xs:text-base sm:text-lg font-semibold">
-              Get In Touch
-            </h4>
-            <div className="space-y-1 xs:space-y-2 sm:space-y-3 text-gray-400">
-              <div>
-                <p className="text-xs xs:text-sm sm:text-base font-medium">
-                  Email
-                </p>
+          <motion.div className="space-y-4" variants={itemVariants}>
+            <h4 className="text-lg font-semibold text-white">Get In Touch</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li>
                 <a
                   href="mailto:pranaym820@gmail.com"
-                  className="text-2xs xs:text-xs sm:text-sm hover:text-purple-400 transition-colors duration-300 break-all"
+                  className="hover:text-purple-400"
                 >
                   pranaym820@gmail.com
                 </a>
-              </div>
-              <div>
-                <p className="text-xs xs:text-sm sm:text-base font-medium">
-                  Phone
-                </p>
-                <a
-                  href="tel:+919503474561"
-                  className="text-2xs xs:text-xs sm:text-sm hover:text-purple-400 transition-colors duration-300"
-                >
+              </li>
+              <li>
+                <a href="tel:+919503474561" className="hover:text-purple-400">
                   +91 9503474561
                 </a>
-              </div>
-              <div>
-                <p className="text-xs xs:text-sm sm:text-base font-medium">
-                  Location
-                </p>
-                <p className="text-2xs xs:text-xs sm:text-sm">
-                  Mumbai, Maharashtra
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+              </li>
+              <li>Mumbai, Maharashtra</li>
+            </ul>
+          </motion.div>
+        </motion.div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-800 pt-4 xs:pt-6 sm:pt-8">
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0">
-            {/* Copyright */}
-            <div className="flex items-center space-x-2 text-gray-400 text-center">
-              <span className="text-2xs xs:text-xs sm:text-sm">
-                © {currentYear} Pranay Meshram. All rights reserved.
-              </span>
-            </div>
-          </div>
-        </div>
+        {/* Bottom Bar */}
+        <motion.div
+          className="mt-12 pt-8 border-t border-white/10 text-center text-gray-500"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <p>© {currentYear} Pranay Meshram. All Rights Reserved.</p>
+        </motion.div>
       </div>
-
-      {/* Background Pattern */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 xs:h-1 bg-gradient-to-r from-purple-600 to-cyan-500"></div>
     </footer>
   );
 };
