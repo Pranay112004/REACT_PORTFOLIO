@@ -69,7 +69,7 @@ const Projects = () => {
       description:
         "The YouTube Clone is a full-stack video streaming application that replicates the core functionalities of YouTube. Built with React.js on the frontend and integrated with dynamic routing, search functionality, and video playback, this clone allows users to browse, search, and watch videos in a clean, responsive UI.",
       technologies: ["Vite+react", "Tailwind -CSS", "React Router"],
-      liveUrl: "https://yt-clone-k02s.onrender.com",
+      liveUrl: "https://youtube-clone-beige-beta.vercel.app",
     },
 
     {
