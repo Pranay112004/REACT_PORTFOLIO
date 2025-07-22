@@ -65,6 +65,15 @@ const Projects = () => {
     },
     {
       id: 4,
+      title: "YOUTUBE-CLONE",
+      description:
+        "The YouTube Clone is a full-stack video streaming application that replicates the core functionalities of YouTube. Built with React.js on the frontend and integrated with dynamic routing, search functionality, and video playback, this clone allows users to browse, search, and watch videos in a clean, responsive UI.",
+      technologies: ["Vite+react", "Tailwind -CSS", "React Router"],
+      liveUrl: "https://yt-clone-k02s.onrender.com",
+    },
+
+    {
+      id: 5,
       title: "Rock-Paper-Scissors Game",
       description:
         " A simple rock-paper-scissors game built using React.js and CSS. Users can play against the computer or against each other. The game keeps track of the score and displays the winner",
