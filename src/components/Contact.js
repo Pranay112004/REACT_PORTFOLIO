@@ -49,6 +49,8 @@ const Contact = () => {
     }
   };
 
+  // --- MODIFIED PART ---
+  // This function now sends the form data to our Node.js backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
@@ -59,19 +61,38 @@ const Contact = () => {
 
     setIsSubmitting(true);
     setSubmissionStatus(null);
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate API call
-      console.log("Form data submitted:", formData);
+      // Send a POST request to our backend's API endpoint
+      const response = await fetch("/api/send-sms", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        // Handle errors from the backend
+        throw new Error(result.error || "Failed to send message.");
+      }
+
+      // If successful:
       setSubmissionStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "" }); // Clear the form
       setErrors({});
     } catch (error) {
+      console.error("Submission error:", error);
       setSubmissionStatus("error");
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmissionStatus(null), 5000); // Hide status after 5 seconds
+      // Hide the success/error message after 5 seconds
+      setTimeout(() => setSubmissionStatus(null), 5000);
     }
   };
+  // --- END OF MODIFIED PART ---
 
   const contactInfo = [
     {
