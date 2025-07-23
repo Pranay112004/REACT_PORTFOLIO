@@ -1,5 +1,7 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import PortfolioBanner from "./PortfolioBanner.jsx";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
@@ -10,22 +12,30 @@ import SplashCursor from "./components/UI/SplashCursor/SplashCursor";
 
 function App() {
   return (
-    // The parent div is great for global styling
-    <div className="App">
-      <SplashCursor />
-      <Navbar />
-
-      {/* Wrap the main sections in a <main> tag */}
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
-
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<PortfolioBanner />} />
+          <Route
+            path="/portfolio"
+            element={
+              <>
+                <SplashCursor />
+                <Navbar />
+                <main>
+                  <Hero />
+                  <About />
+                  <Skills />
+                  <Projects />
+                  <Contact />
+                </main>
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
