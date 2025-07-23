@@ -89,6 +89,14 @@ const About = () => {
       className="relative py-24 bg-black text-white overflow-hidden"
       ref={ref}
     >
+      <style>
+        {`
+          html, body {
+            scroll-behavior: smooth;
+          }
+        `}
+      </style>
+
       {/* Aurora Background */}
       <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/4 w-96 h-96 bg-purple-600/20 rounded-full filter blur-3xl opacity-50 animate-pulse"></div>
       <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-96 h-96 bg-cyan-600/20 rounded-full filter blur-3xl opacity-50 animate-pulse animation-delay-3000"></div>
