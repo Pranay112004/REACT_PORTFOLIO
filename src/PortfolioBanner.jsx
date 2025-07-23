@@ -282,8 +282,8 @@ const PortfolioBanner = () => {
       </div>
       <div className="content">
         <div className="author">
-          <h2>Your Name</h2>
-          <p>Creative Web Developer</p>
+          <h2>PRANAY MESHRAM</h2>
+          
           <Link
             to="/portfolio"
             className="view-portfolio"
