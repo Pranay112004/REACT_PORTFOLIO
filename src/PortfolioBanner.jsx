@@ -8,7 +8,7 @@ const PortfolioBanner = () => {
     // This timer controls the duration of the preloader screen.
     const timer = setTimeout(() => {
       setIsLoaded(true);
-    }, 3000); // The welcome message will be visible for 3 seconds.
+    }, 4000); // The welcome message will be visible for 4 seconds.
 
     // Cleanup the timer if the component unmounts.
     return () => clearTimeout(timer);
@@ -92,7 +92,7 @@ const PortfolioBanner = () => {
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+            transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
             opacity: 1;
             visibility: visible;
           }
@@ -106,11 +106,11 @@ const PortfolioBanner = () => {
             font-family: Poppins, sans-serif;
             font-size: clamp(2em, 8vw, 5em);
             color: #25283b;
-            animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: text-focus-in 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
           }
           
           @keyframes text-focus-in {
-            0% { filter: blur(12px); opacity: 0; }
+            0% { filter: blur(8px); opacity: 0; }
             100% { filter: blur(0px); opacity: 1; }
           }
           
@@ -118,7 +118,7 @@ const PortfolioBanner = () => {
           .banner .slider,
           .banner .content {
             opacity: 0;
-            transition: opacity 1.2s ease-in 0.5s; /* Delay the fade-in */
+            transition: opacity 1.5s ease-in 0.8s;
           }
           
           .banner.loaded .slider,
@@ -132,9 +132,8 @@ const PortfolioBanner = () => {
             height: clamp(160px, 24vw, 280px);
             top: 15%;
             left: 50%;
-            transform: translateX(-50%);
             transform-style: preserve-3d;
-            animation: autoRun 25s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+            animation: autoRun 30s linear infinite;
             z-index: 2;
           }
 
@@ -146,16 +145,18 @@ const PortfolioBanner = () => {
             animation-play-state: paused;
           }
 
+          /* UPDATED: Keyframes now rotate without the X-axis tilt for a perfect centered spin */
           @keyframes autoRun {
-            from { transform: perspective(1200px) rotateX(-14deg) rotateY(0deg) translateX(-50%); }
-            to { transform: perspective(1200px) rotateX(-14deg) rotateY(360deg) translateX(-50%); }
+            from { transform: translateX(-50%) perspective(1200px) rotateY(0deg); }
+            to { transform: translateX(-50%) perspective(1200px) rotateY(360deg); }
           }
           
           .banner .slider .item {
             position: absolute;
             inset: 0;
             transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(clamp(200px, 45vw, 580px));
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            backface-visibility: hidden;
           }
 
           .banner .slider .item:hover {

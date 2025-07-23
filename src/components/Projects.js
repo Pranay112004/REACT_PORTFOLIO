@@ -36,7 +36,7 @@ const Projects = () => {
       description:
         "A full-stack video streaming application that replicates the core functionalities of YouTube.",
       technologies: ["Vite+react", "Tailwind CSS", "React Router"],
-      liveUrl: "https://youtube-clone-beige-beta.vercel.app",
+      liveUrl: "https://yt-clone-k02s.onrender.com",
     },
     {
       id: 5,
