@@ -49,7 +49,7 @@ app.post("/api/send-sms", async (req, res) => {
   }
 
   // Create the message content
-  const smsBody = `New Contact Form Submission:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+  const smsBody = `Hii , Pranay Sir somoneone wanted to contact you\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
 
   try {
     // Use the Twilio client to send the SMS
