@@ -122,11 +122,7 @@ const Footer = () => {
                   pranaym820@gmail.com
                 </a>
               </li>
-              <li>
-                <a href="tel:+919503474561" className="hover:text-purple-400">
-                  +91 9503474561
-                </a>
-              </li>
+
               <li>Mumbai, Maharashtra</li>
             </ul>
           </motion.div>

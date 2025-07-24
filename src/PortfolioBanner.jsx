@@ -8,7 +8,7 @@ const PortfolioBanner = () => {
     // This timer controls the duration of the preloader screen.
     const timer = setTimeout(() => {
       setIsLoaded(true);
-    }, 4000); // The welcome message will be visible for 4 seconds.
+    }, 3500); // The welcome message will be visible for 4 seconds.
 
     // Cleanup the timer if the component unmounts.
     return () => clearTimeout(timer);
@@ -283,7 +283,7 @@ const PortfolioBanner = () => {
       <div className="content">
         <div className="author">
           <h2>PRANAY MESHRAM</h2>
-          
+
           <Link
             to="/portfolio"
             className="view-portfolio"

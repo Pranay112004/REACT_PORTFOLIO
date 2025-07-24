@@ -100,7 +100,6 @@ const Contact = () => {
       value: "pranaym820@gmail.com",
       link: "mailto:pranaym820@gmail.com",
     },
-    { icon: FaPhone, value: "+91 9503474561", link: "tel:+919503474561" },
     { icon: FaMapMarkerAlt, value: "Mumbai, Maharashtra", link: "#" },
   ];
 
@@ -166,9 +165,6 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold text-white">
                   Contact Information
                 </h3>
-                <p className="text-gray-400 mt-2">
-                  Find me through any of these channels.
-                </p>
               </motion.div>
               <div className="space-y-4">
                 {contactInfo.map((item, index) => (
