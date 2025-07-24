@@ -124,6 +124,7 @@ const Footer = () => {
               </li>
 
               <li>Mumbai, Maharashtra</li>
+              <li>Sahas Ramteke - SMS INTEGRATION</li>
             </ul>
           </motion.div>
         </motion.div>
