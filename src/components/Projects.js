@@ -1,8 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   motion,
   useScroll,
@@ -13,10 +11,7 @@ import {
   useAnimationFrame,
 } from "framer-motion";
 
-// Register GSAP ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
-
-// --- Helper Hook to get element width for the scroller ---
+// --- Helper Hooks and Components (No changes here) ---
 function useElementWidth(ref) {
   const [width, setWidth] = useState(0);
   useLayoutEffect(() => {
@@ -32,7 +27,6 @@ function useElementWidth(ref) {
   return width;
 }
 
-// --- The VelocityText Component for the animated background ---
 function VelocityText({ children, baseVelocity = 100, numCopies = 6 }) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -78,7 +72,6 @@ function VelocityText({ children, baseVelocity = 100, numCopies = 6 }) {
 
   return (
     <div className="relative overflow-hidden">
-      {/* RESPONSIVE CHANGE: Adjusted text size */}
       <motion.div
         className="flex whitespace-nowrap text-center font-sans text-4xl md:text-5xl font-bold tracking-[-0.02em] text-white/10"
         style={{ x }}
@@ -149,65 +142,68 @@ const Projects = () => {
     },
   ];
 
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const projectsRef = useRef(null);
+  // Animation variants for Framer Motion
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(titleRef.current.children, {
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-          toggleActions: "play none none none",
-        },
-      });
-      gsap.from(".project-card", {
-        opacity: 0,
-        y: 100,
-        duration: 0.8,
-        stagger: 0.3, // Slightly increased stagger for better effect
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: projectsRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
 
   return (
     <section
       id="projects"
       className="relative py-20 bg-black text-white min-h-screen overflow-hidden"
-      ref={sectionRef}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="text-center mb-16" ref={titleRef}>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 relative inline-block">
+        {/* Animated Title Section */}
+        <motion.div
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={containerVariants}
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-bold mb-4 relative inline-block"
+          >
             My Creations
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"></div>
-          </h2>
-          <p className="text-lg md:text-xl text-gray-400 mt-6 italic">
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-lg md:text-xl text-gray-400 mt-6 italic"
+          >
             A showcase of my passion for building and creating.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* --- Projects Container --- */}
-        <div className="space-y-16 md:space-y-24" ref={projectsRef}>
+        {/* Animated Projects Container */}
+        <motion.div
+          className="space-y-16 md:space-y-24"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+        >
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={project.id}
-              // RESPONSIVE CHANGE: The side-by-side layout now starts at the `md` breakpoint
-              className={`project-card md:flex md:items-center gap-8 lg:gap-12 transition-all duration-300 hover:scale-[1.01] ${
+              variants={itemVariants}
+              className={`md:flex md:items-center gap-8 lg:gap-12 transition-all duration-300 hover:scale-[1.01] ${
                 index % 2 === 1 ? "md:flex-row-reverse" : ""
               }`}
             >
@@ -244,7 +240,6 @@ const Projects = () => {
               {/* Project Details */}
               <div className="md:w-1/2">
                 <h3
-                  // RESPONSIVE CHANGE: Adjusted text sizes
                   className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 ${project.accentColor} text-shadow-lg`}
                 >
                   {project.title}
@@ -252,8 +247,6 @@ const Projects = () => {
                 <p className="text-gray-300 mb-6 text-base sm:text-lg leading-relaxed italic text-shadow">
                   {project.description}
                 </p>
-
-                {/* Technologies */}
                 <div className="flex flex-wrap gap-2 sm:gap-3 mb-8">
                   {project.technologies.map((tech, i) => (
                     <span
@@ -264,8 +257,6 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-
-                {/* Visit Link Button */}
                 <div className="flex gap-4">
                   <a
                     href={project.liveUrl}
@@ -278,12 +269,11 @@ const Projects = () => {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
-      {/* Custom CSS for text shadows */}
       <style jsx>{`
         .text-shadow-lg {
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
