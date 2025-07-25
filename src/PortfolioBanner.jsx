@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import WelcomeSound from "./WelcomeSound.jsx"; // Adjust path as needed
 
 const PortfolioBanner = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // This timer controls the duration of the preloader screen.
     const timer = setTimeout(() => {
       setIsLoaded(true);
-    }, 3500); // The welcome message will be visible for 4 seconds.
+    }, 3500); // Preloader duration: 3.5 seconds
 
-    // Cleanup the timer if the component unmounts.
     return () => clearTimeout(timer);
   }, []);
 
@@ -83,7 +82,6 @@ const PortfolioBanner = () => {
             background: linear-gradient(to bottom, rgba(37,40,59,0.1) 0%, rgba(210,210,210,0.2) 100%);
           }
 
-          /* Preloader styles */
           .banner .preloader {
             position: absolute;
             inset: 0;
@@ -114,7 +112,6 @@ const PortfolioBanner = () => {
             100% { filter: blur(0px); opacity: 1; }
           }
           
-          /* Main content is initially hidden and fades in after preloader */
           .banner .slider,
           .banner .content {
             opacity: 0;
@@ -145,7 +142,6 @@ const PortfolioBanner = () => {
             animation-play-state: paused;
           }
 
-          /* UPDATED: Keyframes now rotate without the X-axis tilt for a perfect centered spin */
           @keyframes autoRun {
             from { transform: translateX(-50%) perspective(1200px) rotateY(0deg); }
             to { transform: translateX(-50%) perspective(1200px) rotateY(360deg); }
@@ -252,11 +248,10 @@ const PortfolioBanner = () => {
           }
         `}
       </style>
-
+      <WelcomeSound isLoaded={isLoaded} /> {/* Add this line */}
       <div className="preloader" aria-hidden={isLoaded}>
         <h1>Welcome to my Portfolio</h1>
       </div>
-
       <div className="slider" role="region" aria-label="3D Image Carousel">
         {sliderItems.map((item) => (
           <div
