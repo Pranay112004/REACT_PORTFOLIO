@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react"; // 1. Import useMemo
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import your icons.
@@ -11,30 +11,19 @@ import {
   FaPython,
   FaJava,
   FaGithub,
-  FaDocker,
   FaGitAlt,
-  FaCube,
 } from "react-icons/fa";
 import {
   SiExpress,
   SiMongodb,
-  SiPostgresql,
   SiMysql,
   SiTailwindcss,
   SiNextdotjs,
-  SiSpringboot,
-  SiSocketdotio,
-  SiCplusplus,
-  SiSolidity,
-  SiIpfs,
   SiPostman,
-  SiIntellijidea,
-  SiRemix,
   SiVercel,
   SiRailway,
   SiRender,
 } from "react-icons/si";
-import { TbBrandVscode } from "react-icons/tb";
 
 // Helper component for the animated background text
 function VelocityText({ text, baseVelocity = -2, className }) {
@@ -43,7 +32,6 @@ function VelocityText({ text, baseVelocity = -2, className }) {
   return (
     <div className="parallax-container overflow-hidden whitespace-nowrap">
       <motion.div
-        // RESPONSIVE CHANGE: Adjusted background text size for smaller screens
         className={`flex whitespace-nowrap text-4xl md:text-5xl font-bold uppercase ${className}`}
         initial={{ x: "0%" }}
         animate={{ x: "-100%" }}
@@ -63,111 +51,124 @@ function VelocityText({ text, baseVelocity = -2, className }) {
 
 // Main Skills Component
 const Skills = () => {
-  // Define all your skills with a category
-  const techSkills = [
-    // Frontend
-    {
-      name: "ReactJS",
-      icon: FaReact,
-      category: "Frontend",
-      color: "text-cyan-400",
-    },
-    {
-      name: "JavaScript",
-      icon: FaJsSquare,
-      category: "Frontend",
-      color: "text-yellow-400",
-    },
-    {
-      name: "Next.js",
-      icon: SiNextdotjs,
-      category: "Frontend",
-      color: "text-white",
-    },
-    {
-      name: "HTML5",
-      icon: FaHtml5,
-      category: "Frontend",
-      color: "text-orange-500",
-    },
-    {
-      name: "CSS3",
-      icon: FaCss3Alt,
-      category: "Frontend",
-      color: "text-blue-500",
-    },
-    {
-      name: "Tailwind CSS",
-      icon: SiTailwindcss,
-      category: "Frontend",
-      color: "text-cyan-500",
-    },
-    // Backend
-    {
-      name: "Node.js",
-      icon: FaNodeJs,
-      category: "Backend",
-      color: "text-green-500",
-    },
-    {
-      name: "Express.js",
-      icon: SiExpress,
-      category: "Backend",
-      color: "text-gray-400",
-    },
-    { name: "Java", icon: FaJava, category: "Backend", color: "text-red-500" },
-    {
-      name: "Python",
-      icon: FaPython,
-      category: "Backend",
-      color: "text-blue-400",
-    },
-    // Database
-    {
-      name: "MongoDB",
-      icon: SiMongodb,
-      category: "Database",
-      color: "text-green-500",
-    },
-    {
-      name: "MySQL",
-      icon: SiMysql,
-      category: "Database",
-      color: "text-blue-600",
-    },
-    // Tools
-    {
-      name: "Git",
-      icon: FaGitAlt,
-      category: "Tools",
-      color: "text-orange-600",
-    },
-    {
-      name: "GitHub",
-      icon: FaGithub,
-      category: "Tools",
-      color: "text-gray-300",
-    },
-    {
-      name: "Postman",
-      icon: SiPostman,
-      category: "Tools",
-      color: "text-orange-500",
-    },
-    { name: "Vercel", icon: SiVercel, category: "Tools", color: "text-white" },
-    {
-      name: "Railway",
-      icon: SiRailway,
-      category: "Tools",
-      color: "text-purple-400",
-    },
-    {
-      name: "Render",
-      icon: SiRender,
-      category: "Tools",
-      color: "text-cyan-400",
-    },
-  ];
+  // 2. Wrap the array definition in useMemo
+  const techSkills = useMemo(
+    () => [
+      // Frontend
+      {
+        name: "ReactJS",
+        icon: FaReact,
+        category: "Frontend",
+        color: "text-cyan-400",
+      },
+      {
+        name: "JavaScript",
+        icon: FaJsSquare,
+        category: "Frontend",
+        color: "text-yellow-400",
+      },
+      {
+        name: "Next.js",
+        icon: SiNextdotjs,
+        category: "Frontend",
+        color: "text-white",
+      },
+      {
+        name: "HTML5",
+        icon: FaHtml5,
+        category: "Frontend",
+        color: "text-orange-500",
+      },
+      {
+        name: "CSS3",
+        icon: FaCss3Alt,
+        category: "Frontend",
+        color: "text-blue-500",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: SiTailwindcss,
+        category: "Frontend",
+        color: "text-cyan-500",
+      },
+      // Backend
+      {
+        name: "Node.js",
+        icon: FaNodeJs,
+        category: "Backend",
+        color: "text-green-500",
+      },
+      {
+        name: "Express.js",
+        icon: SiExpress,
+        category: "Backend",
+        color: "text-gray-400",
+      },
+      {
+        name: "Java",
+        icon: FaJava,
+        category: "Backend",
+        color: "text-red-500",
+      },
+      {
+        name: "Python",
+        icon: FaPython,
+        category: "Backend",
+        color: "text-blue-400",
+      },
+      // Database
+      {
+        name: "MongoDB",
+        icon: SiMongodb,
+        category: "Database",
+        color: "text-green-500",
+      },
+      {
+        name: "MySQL",
+        icon: SiMysql,
+        category: "Database",
+        color: "text-blue-600",
+      },
+      // Tools
+      {
+        name: "Git",
+        icon: FaGitAlt,
+        category: "Tools",
+        color: "text-orange-600",
+      },
+      {
+        name: "GitHub",
+        icon: FaGithub,
+        category: "Tools",
+        color: "text-gray-300",
+      },
+      {
+        name: "Postman",
+        icon: SiPostman,
+        category: "Tools",
+        color: "text-orange-500",
+      },
+      {
+        name: "Vercel",
+        icon: SiVercel,
+        category: "Tools",
+        color: "text-white",
+      },
+      {
+        name: "Railway",
+        icon: SiRailway,
+        category: "Tools",
+        color: "text-purple-400",
+      },
+      {
+        name: "Render",
+        icon: SiRender,
+        category: "Tools",
+        color: "text-cyan-400",
+      },
+    ],
+    []
+  ); // 3. Add an empty dependency array [] to ensure it's created only once
 
   const filters = ["All", "Frontend", "Backend", "Database", "Tools"];
   const [activeFilter, setActiveFilter] = useState("All");
@@ -240,7 +241,6 @@ const Skills = () => {
                 whileHover={{ scale: 1.1, y: -5 }}
                 className="bg-gray-900/50 backdrop-blur-sm p-4 md:p-6 rounded-lg border border-gray-700 flex flex-col items-center justify-center gap-3 cursor-pointer"
               >
-                {/* RESPONSIVE CHANGE: Adjusted icon size */}
                 <skill.icon className={`text-4xl sm:text-5xl ${skill.color}`} />
                 <p className="text-center font-medium text-xs sm:text-sm">
                   {skill.name}

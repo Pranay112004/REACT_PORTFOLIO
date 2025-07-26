@@ -4,7 +4,6 @@ import { useInView } from "react-intersection-observer";
 import Tilt from "react-parallax-tilt";
 import {
   FaEnvelope,
-  FaPhone,
   FaMapMarkerAlt,
   FaPaperPlane,
   FaCheckCircle,
