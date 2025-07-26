@@ -6,7 +6,7 @@ const WelcomeSound = ({ isLoaded }) => {
   useEffect(() => {
     const audio = audioRef.current;
     audio.preload = "auto"; // Preload the audio
-    audio.volume = 0.2; // Max volume for testing
+    audio.volume = 0.5; // Max volume for testing
 
     const playAudio = () => {
       if (!isLoaded) {
