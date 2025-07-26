@@ -7,7 +7,7 @@ const BackgroundSound = () => {
   useEffect(() => {
     const audio = audioRef.current; // Store ref value to avoid changes during cleanup
     audio.loop = true;
-    audio.volume = 1.0; // Max volume for testing
+    audio.volume = 0.1; // Max volume for testing
 
     if (isPlaying) {
       audio.play().catch((error) => {

@@ -5,17 +5,28 @@ const WelcomeSound = ({ isLoaded }) => {
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.volume = 1.0; // Max volume for testing
-    if (!isLoaded) {
-      audio.play().catch((error) => {
-        console.error("Audio playback failed:", error);
-      });
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
-    }
+    audio.preload = "auto"; // Preload the audio
+    audio.volume = 0.2; // Max volume for testing
 
+    const playAudio = () => {
+      if (!isLoaded) {
+        audio.play().catch((error) => {
+          console.error("Audio playback failed:", {
+            message: error.message || error,
+            code: error.code,
+            name: error.name,
+          });
+        });
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    };
+
+    // Delay playback slightly to ensure audio is ready
+    const timer = setTimeout(playAudio, 10);
     return () => {
+      clearTimeout(timer);
       audio.pause();
       audio.currentTime = 0;
     };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import WelcomeSound from "./WelcomeSound.jsx"; // Adjust path as needed
+import WelcomeSound from "./WelcomeSound"; // Adjust path as needed
 
 const PortfolioBanner = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -215,7 +215,7 @@ const PortfolioBanner = () => {
           }
           
           .banner .content .model {
-            background-image: url(/images/model.png);
+            background-image: url(/images/Batman.png);
             width: 100%;
             height: 80vh;
             position: absolute;
